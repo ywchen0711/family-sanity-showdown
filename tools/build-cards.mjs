@@ -1,11 +1,15 @@
 // Builds the card database: data/cards.json (the data) and js/cards.data.js (the same data as an ES module for the
-// browser). 180 cards: 20 characters (4 family heroes + 16 guests), 70 actions, 50 items, 40 locations.
-// Every card has id, name, type, cost, effect, value — plus `fx` (what the engine runs) and a few display fields.
+// browser). 500 cards: 60 characters (4 family heroes + 56 guests), 200 actions, 140 items, 100 locations — the base
+// set (180) plus the expansion in cards-expansion.mjs (320). Every card has id, name, type, cost, effect, value,
+// rarity — plus `fx` (what the engine runs) and a few display fields. Rarity comes from how strong a card is for its
+// cost, ranked within its type (top 16% epic, next 30% rare, the rest common); the legendaries are picked by hand.
 import { writeFileSync } from 'node:fs';
+import { GUESTS2, ACTIONS2, ITEMS2, LOCS2 } from './cards-expansion.mjs';
 
 // ------------------------------------------------------------------ effect text from effect ops
 // ops: ['dmg',n] ['self',n] ['heal',n] ['draw',n] ['energy',n] ['discard',n] ['steal',n] ['mill',n] ['shield',n]
 //      ['poison',n,t] ['regen',n,t] ['tax',n] ['sap',n] ['reflect'] ['clearItem'] ['clearAlly'] ['clearLoc']
+//      ['ramp',n] ['refill'] ['cleanse'] ['clearItems']
 const T = {
   dmg: (n) => [`對手失去 ${n} 點理智`, `Opponent loses ${n} SP`],
   self: (n) => [`你自己失去 ${n} 點理智`, `you lose ${n} SP`],
@@ -24,6 +28,10 @@ const T = {
   clearItem: () => ['拿走對手一件道具', 'take away one of the opponent\'s items'],
   clearAlly: () => ['送走對手一位角色', 'send away one of the opponent\'s characters'],
   clearLoc: () => ['取消目前的場地', 'clear the current location'],
+  ramp: (n) => [`能量上限永久 +${n}（這回合也 +${n}）`, `your max energy goes up by ${n} for good (and +${n} now)`],
+  refill: () => ['能量回滿', 'refill your energy to the max'],
+  cleanse: () => ['清除你身上的壞效果（中毒、加費、少能量）', 'remove your bad effects (poison, extra cost, less energy)'],
+  clearItems: () => ['拿走對手全部的道具', "take away all of the opponent's items"],
 };
 const fxText = (fx) => { const zh = [], en = []; for (const [op, a, b] of fx) { const [z, e] = T[op](a, b); zh.push(z); en.push(e); } return [zh.join('，'), en.join(', ')]; };
 const cap = (s) => s.charAt(0).toUpperCase() + s.slice(1);
@@ -36,13 +44,13 @@ const add = (c) => { cards.push(c); return c; };
 
 // ------------------------------------------------------------------ characters: the family (heroes) and guests
 export const HEROES = [
-  { key: 'jeff', icon: '👨', zh: 'Jeff 爸爸', en: 'Jeff (Dad)', sp: 24, hand: 4, color: '#3a7ad8',
+  { key: 'jeff', icon: '👨', zh: 'Jeff 爸爸', en: 'Jeff (Dad)', sp: 28, hand: 4, color: '#3a7ad8',
     passive: { id: 'dadJoke', zh: '爸爸冷笑話：你打出的每張「讓對手失去理智」的牌，傷害 +1。', en: 'Dad Joke: every card you play that makes the opponent lose SP deals +1.' } },
-  { key: 'erin', icon: '👩', zh: 'Erin 媽媽', en: 'Erin (Mom)', sp: 26, hand: 4, color: '#d8407a',
-    passive: { id: 'superMom', zh: '超級媽媽：你的回復效果 +2，道具少花 1 點能量。', en: 'Super Mom: your healing restores 2 more, and your items cost 1 less.' } },
-  { key: 'josh', icon: '👦', zh: 'Josh 哥哥（10 歲）', en: 'Josh (big brother, 10)', sp: 30, hand: 5, color: '#2aa86a',
+  { key: 'erin', icon: '👩', zh: 'Erin 媽媽', en: 'Erin (Mom)', sp: 24, hand: 4, color: '#d8407a',
+    passive: { id: 'superMom', zh: '超級媽媽：你的回復效果 +1，道具少花 1 點能量。', en: 'Super Mom: your healing restores 1 more, and your items cost 1 less.' } },
+  { key: 'josh', icon: '👦', zh: 'Josh 哥哥（10 歲）', en: 'Josh (big brother, 10)', sp: 27, hand: 5, color: '#2aa86a',
     passive: { id: 'quickThinker', zh: '腦筋轉很快：抽牌階段如果手牌 3 張以下，多抽 1 張；起手 5 張牌。', en: 'Quick Thinker: in the draw phase, with 3 or fewer cards in hand, draw 1 more; starts with 5 cards.' } },
-  { key: 'jasper', icon: '🧒', zh: 'Jasper 弟弟（8 歲）', en: 'Jasper (little brother, 8)', sp: 20, hand: 4, color: '#f0a020',
+  { key: 'jasper', icon: '🧒', zh: 'Jasper 弟弟（8 歲）', en: 'Jasper (little brother, 8)', sp: 21, hand: 4, color: '#f0a020',
     passive: { id: 'cuteFace', zh: '可愛臉：每個對手回合，對手打出的牌第一次讓你失去 3 點以上理智時，少失去 1 點；理智低於 8 時，你打出的牌傷害 +1（大哭大鬧）。', en: 'Cute Face: in each opponent turn, the first card that would cost you 3 or more SP costs 1 less; below 8 SP your cards deal +1 (meltdown).' } },
 ];
 HEROES.forEach((h, i) => add({ id: `C${String(i + 1).padStart(3, '0')}`, name: { zh: h.zh, en: h.en }, type: 'character', cost: 0, value: h.sp, hero: h.key, icon: h.icon,
@@ -66,9 +74,9 @@ const GUESTS = [
   ['📮', '郵差', 'Mail Carrier', 2, 2, [['draw', 1]]],
   ['🧑‍💼', '校長', 'Principal', 5, 2, [['tax', 1], ['dmg', 1]]],
 ];
-GUESTS.forEach(([icon, zh, en, cost, turns, tick], i) => {
+[...GUESTS, ...GUESTS2].forEach(([icon, zh, en, cost, turns, tick], i) => {
   const [tz, te] = fxText(tick);
-  add({ id: `C${String(i + 5).padStart(3, '0')}`, name: { zh, en }, type: 'character', cost, value: turns, icon, fx: [], tick, turns,
+  add({ id: `C${String(i + 5).padStart(3, '0')}`, name: { zh, en }, type: 'character', cost, value: turns, icon, fx: [], tick, turns, set: i < GUESTS.length ? 'base' : 'plus',
     effect: { zh: `來你家 ${turns} 回合：你的每回合開始時，${tz}。`, en: `Visits for ${turns} turns: at the start of each of your turns, ${te}.` } });
 });
 
@@ -149,9 +157,9 @@ const ACTIONS = [
   ['🍫', '偷吃零食', 'Snack Raid', 2, [['heal', 2], ['draw', 1]]],
   ['💥', '最後手段', 'Last Resort', 7, [['dmg', 12]]],
 ];
-ACTIONS.forEach(([icon, zh, en, cost, fx, hero], i) => {
+[...ACTIONS, ...ACTIONS2].forEach(([icon, zh, en, cost, fx, hero], i) => {
   const [tz, te] = fxText(fx), [sz, se] = sig(hero);
-  add({ id: `A${String(i + 1).padStart(3, '0')}`, name: { zh, en }, type: 'action', cost, value: mainValue(fx), icon, fx, ...(hero ? { hero } : {}),
+  add({ id: `A${String(i + 1).padStart(3, '0')}`, name: { zh, en }, type: 'action', cost, value: mainValue(fx), icon, fx, set: i < ACTIONS.length ? 'base' : 'plus', ...(hero ? { hero } : {}),
     effect: { zh: tz + '。' + sz, en: cap(te) + '.' + se } });
 });
 
@@ -210,13 +218,13 @@ const ITEMS = [
   ['🪑', '按摩椅', 'Massage Chair', 4, 3, [], [['heal', 3]], null, 'jeff'],
 ];
 const modText = (m) => { if (!m) return ['', '']; const z = [], e = []; if (m.boost) { z.push(`你的傷害 +${m.boost}`); e.push(`your damage +${m.boost}`); } if (m.armor) { z.push(`你受到的傷害 -${m.armor}`); e.push(`damage you take -${m.armor}`); } if (m.thorns) { z.push(`被攻擊時對手失去 ${m.thorns} 點理智`); e.push(`when you are hit the opponent loses ${m.thorns} SP`); } return [z.join('，'), e.join(', ')]; };
-ITEMS.forEach(([icon, zh, en, cost, turns, fx, tick, mods, hero], i) => {
+[...ITEMS, ...ITEMS2].forEach(([icon, zh, en, cost, turns, fx, tick, mods, hero], i) => {
   const z = [], e = [];
   if (fx.length) { const [a, b] = fxText(fx); z.push(`放下時${a}`); e.push(`when played, ${b}`); }
   if (tick.length) { const [a, b] = fxText(tick); z.push(`每回合開始時${a}`); e.push(`at the start of each of your turns, ${b}`); }
   const [mz, me] = modText(mods); if (mz) { z.push(mz); e.push(me); }
   const [sz, se] = sig(hero);
-  add({ id: `I${String(i + 1).padStart(3, '0')}`, name: { zh, en }, type: 'item', cost, value: turns, icon, fx, tick, turns, ...(mods ? { mods } : {}), ...(hero ? { hero } : {}),
+  add({ id: `I${String(i + 1).padStart(3, '0')}`, name: { zh, en }, type: 'item', cost, value: turns, icon, fx, tick, turns, set: i < ITEMS.length ? 'base' : 'plus', ...(mods ? { mods } : {}), ...(hero ? { hero } : {}),
     effect: { zh: `使用 ${turns} 回合：${z.join('；')}。${sz}`, en: `Lasts ${turns} turns: ${e.join('; ')}.${se}` } });
 });
 
@@ -276,22 +284,51 @@ const ruleText = (r) => {
   if (sa.length) { const [a, b] = fxText(sa); z.push(`每位玩家回合開始時${a.replace(/你自己/g, '')}`); e.push(`at the start of every player's turn, ${b.replace(/you /g, 'they ')}`); }
   return [z.join('，'), e.join(', ')];
 };
-LOCS.forEach(([icon, zh, en, cost, rule, owner], i) => {
+[...LOCS, ...LOCS2].forEach(([icon, zh, en, cost, rule, owner], i) => {
   if (rule.startAll) rule.startAll = rule.startAll.filter((o) => o[1] !== 0); if (!rule.drawExtra) delete rule.drawExtra;
   const [rz, re] = ruleText(rule), z = [], e = [];
   if (rz) { z.push(`大家：${rz}`); e.push(`Everyone: ${re}`); }
   if (owner.length) { const [a, b] = fxText(owner); z.push(`打出的人每回合開始時${a}`); e.push(`whoever played it, at the start of their turns: ${b}`); }
   const v = Math.abs(rule.dmgMod || rule.healMod || rule.costItem || rule.costAction || rule.costChar || rule.drawExtra || (owner[0] && owner[0][1]) || 1);
-  add({ id: `L${String(i + 1).padStart(3, '0')}`, name: { zh, en }, type: 'location', cost, value: v, icon, fx: [], rule, owner,
+  add({ id: `L${String(i + 1).padStart(3, '0')}`, name: { zh, en }, type: 'location', cost, value: v, icon, fx: [], rule, owner, set: i < LOCS.length ? 'base' : 'plus',
     effect: { zh: z.join('；') + '。打出新場地會取代舊的。', en: e.join('; ') + '. A new location replaces the old one.' } });
 });
 
+// ------------------------------------------------------------------ rarity
+const OPV = { dmg: 1, self: -0.8, heal: 0.75, draw: 1.3, energy: 0.9, discard: 1.1, steal: 1.6, mill: 0.35, shield: 0.6, tax: 0.9, sap: 1.1,
+  reflect: 2.5, clearItem: 2.2, clearAlly: 2.2, clearLoc: 1.2, ramp: 3.2, refill: 6, cleanse: 1.2, clearItems: 4 };
+const opsPower = (ops) => ops.reduce((a, [op, n, t]) => a + (op === 'poison' ? n * t * 0.85 : op === 'regen' ? n * t * 0.65 : (OPV[op] || 0) * (typeof n === 'number' ? n : 1)), 0);
+function power(c) {
+  if (c.type === 'action') return opsPower(c.fx);
+  if (c.type === 'character') return opsPower(c.tick) * c.turns * 0.85;
+  if (c.type === 'item') { const m = c.mods || {}; return opsPower(c.fx) + opsPower(c.tick) * c.turns * 0.85 + ((m.boost || 0) * 1.2 + (m.armor || 0) * 0.8 + (m.thorns || 0) * 0.5) * c.turns; }
+  const r = c.rule, rules = Math.abs(r.dmgMod || 0) + (r.healMod || 0) + Math.abs(r.costAction || 0) + Math.abs(r.costItem || 0) + Math.abs(r.costChar || 0) + (r.drawExtra || 0) * 1.5 + opsPower(r.startAll || []);
+  return opsPower(c.owner) * 2.2 + rules * 0.9;
+}
+// strong for its cost, and big cards count a bit extra
+const score = (c) => { const pw = power(c); return ((pw + 0.5) / (c.cost + 1)) * 2 + pw * 0.3; };
+export const RARITIES = ['common', 'rare', 'epic', 'legendary'];
+const LEGENDS = new Set(['Santa', 'Unicorn', 'Museum Dinosaur', 'Genie',
+  'Last Resort', 'Elephant Stomp', 'Meteor Shower', 'Dragon Breath', 'Fireworks Finale', 'King of Chaos', 'Ultimate Prank', 'Resort Getaway',
+  'Family Reunion', 'Rewind Time', 'Graduation Day', 'Jackpot', 'Freeze!', 'Second Wind',
+  'Family Heirloom', 'Lego Castle', 'Rock Band Set', 'Gaming PC', 'Wedding Ring', 'Paper Crown', 'Dream House', 'Carousel',
+  'Fairy-Tale Castle', 'Around the World', "New Year's Eve Party", 'Legoland', 'Meteor Night', 'Hot Spring', 'Theme Park']);
+for (const c of cards) if (LEGENDS.has(c.name.en)) c.rarity = 'legendary';
+if (cards.filter((c) => c.rarity === 'legendary').length !== LEGENDS.size) throw new Error('a legendary name is misspelled');
+for (const type of ['character', 'action', 'item', 'location']) {
+  const list = cards.filter((c) => c.type === type && !c.stats && !c.rarity).map((c) => [c, score(c)]).sort((a, b) => b[1] - a[1] || a[0].id.localeCompare(b[0].id));
+  const n = list.length, cut = [Math.round(n * 0.16), Math.round(n * 0.46)];
+  list.forEach(([c], k) => { c.rarity = k < cut[0] ? 'epic' : k < cut[1] ? 'rare' : 'common'; });
+}
+cards.filter((c) => c.stats).forEach((c) => { c.rarity = 'hero'; c.set = 'base'; });
+
 // ------------------------------------------------------------------ write
 const count = (t) => cards.filter((c) => c.type === t).length;
-const want = { character: 20, action: 70, item: 50, location: 40 };
+const want = { character: 60, action: 200, item: 140, location: 100 };
 for (const [t, n] of Object.entries(want)) if (count(t) !== n) throw new Error(`${t}: ${count(t)} cards, want ${n}`);
 if (new Set(cards.map((c) => c.id)).size !== cards.length) throw new Error('duplicate ids');
-const db = { version: 1, game: 'Family Sanity Showdown', counts: { total: cards.length, ...want }, heroes: HEROES.map((h) => ({ key: h.key, cardId: cards.find((c) => c.hero === h.key && c.type === 'character').id, sp: h.sp, hand: h.hand, passive: h.passive })), cards };
+const rarityCounts = Object.fromEntries(['hero', ...RARITIES].map((r) => [r, cards.filter((c) => c.rarity === r).length]));
+const db = { version: 2, game: 'Family Sanity Showdown', counts: { total: cards.length, ...want }, rarityCounts, heroes: HEROES.map((h) => ({ key: h.key, cardId: cards.find((c) => c.hero === h.key && c.type === 'character').id, sp: h.sp, hand: h.hand, passive: h.passive })), cards };
 writeFileSync(new URL('../data/cards.json', import.meta.url), JSON.stringify(db, null, 1));
 writeFileSync(new URL('../js/cards.data.js', import.meta.url), '// generated by tools/build-cards.mjs from the same tables as data/cards.json — do not edit\nexport default ' + JSON.stringify(db) + ';\n');
-console.log(`built ${cards.length} cards: ${Object.entries(want).map(([t]) => `${count(t)} ${t}`).join(', ')}`);
+console.log(`built ${cards.length} cards: ${Object.entries(want).map(([t]) => `${count(t)} ${t}`).join(', ')}; rarity ${JSON.stringify(rarityCounts)}`);

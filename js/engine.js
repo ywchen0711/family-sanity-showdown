@@ -1,10 +1,12 @@
 // Family Sanity Showdown: the rules engine (pure, no DOM). Turn: start effects -> draw phase -> main phase -> end.
 // Each player has Sanity Points (SP); reach 0 and you lose. Energy grows by 1 each turn (max 10) and pays for cards.
-import DB from './cards.data.js?v=1';
+import DB from './cards.data.js?v=2';
 
 export const CARDS = Object.fromEntries(DB.cards.map((c) => [c.id, c]));
 export const HEROES = Object.fromEntries(DB.heroes.map((h) => [h.key, { ...h, card: CARDS[h.cardId] }]));
-export const RULES = { maxEnergy: 10, handLimit: 8, maxItems: 3, maxAllies: 2, deckSize: 40, turnLimit: 60, healCap: 0 };
+export const RULES = { maxEnergy: 10, handLimit: 8, maxItems: 3, maxAllies: 2, deckSize: 30, turnLimit: 60, healCap: 0, reshuffleSp: 6 };
+// hero passives (numbers kept here so the balance tests can try other values)
+export const TUNE = { dadJoke: 1, momHeal: 1, momItems: 1, joshHand: 3, cute: 1, meltdownAt: 8, meltdown: 1 };
 
 // ------------------------------------------------------------------ random numbers kept inside the state (so it can be cloned)
 export function rnd(s) { s.seed = (s.seed * 16807) % 2147483647; return (s.seed - 1) / 2147483646; }
@@ -12,13 +14,15 @@ const pick = (s, arr) => arr[Math.floor(rnd(s) * arr.length)];
 function shuffle(s, arr) { for (let i = arr.length - 1; i > 0; i--) { const j = Math.floor(rnd(s) * (i + 1)); [arr[i], arr[j]] = [arr[j], arr[i]]; } return arr; }
 
 // ------------------------------------------------------------------ decks: 30 cards, the hero's signature cards first
+// (a random deck for quick games and the computer; players bring the decks they build from their collection)
 const POOL = DB.cards.filter((c) => !(c.type === 'character' && c.stats));
-export function buildDeck(s, heroKey) {
-  const want = { character: 4, action: 19, item: 11, location: 6 }, deck = [];
+export const DECK_MIX = { character: 3, action: 15, item: 8, location: 4 };
+export function buildDeck(s, heroKey, pool = POOL) {
+  const want = DECK_MIX, deck = [];
   for (const [type, n] of Object.entries(want)) {
-    const own = shuffle(s, POOL.filter((c) => c.type === type && c.hero === heroKey));
-    const rest = shuffle(s, POOL.filter((c) => c.type === type && !c.hero));
-    const others = shuffle(s, POOL.filter((c) => c.type === type && c.hero && c.hero !== heroKey));
+    const own = shuffle(s, pool.filter((c) => c.type === type && c.hero === heroKey));
+    const rest = shuffle(s, pool.filter((c) => c.type === type && !c.hero));
+    const others = shuffle(s, pool.filter((c) => c.type === type && c.hero && c.hero !== heroKey));
     const list = [...own.slice(0, Math.ceil(n / 3)), ...rest, ...others].slice(0, n);
     deck.push(...list.map((c) => c.id));
   }
@@ -26,12 +30,12 @@ export function buildDeck(s, heroKey) {
 }
 
 // ------------------------------------------------------------------ a new game
-// opts: { heroes: ['jeff', 'josh'], names?, cpu?: [false, 'normal'], seed? }
+// opts: { heroes: ['jeff', 'josh'], decks?: [[ids…] | null, …], names?, cpu?: [false, 'normal'], seed? }
 export function newGame(opts) {
   const s = { seed: (opts.seed || Date.now()) % 2147483646 + 1, turn: 0, cur: 0, loc: null, log: [], winner: null, events: [], cpu: opts.cpu || [false, false] };
   s.players = opts.heroes.map((hk, i) => {
     const h = HEROES[hk];
-    return { i, hero: hk, name: opts.names?.[i] || h.card.name, sp: h.sp, maxSp: h.sp, energy: 0, maxEnergy: 0, deck: buildDeck(s, hk), hand: [], discard: [],
+    return { i, hero: hk, name: opts.names?.[i] || h.card.name, sp: h.sp, maxSp: h.sp, energy: 0, maxEnergy: 0, deck: opts.decks?.[i]?.length ? shuffle(s, opts.decks[i].filter((id) => CARDS[id]).slice()) : buildDeck(s, hk), hand: [], discard: [],
       items: [], allies: [], shield: 0, poison: [], regen: [], tax: 0, sap: 0, reflect: false, cuteReady: false, fatigue: 0, played: 0 };
   });
   s.cur = rnd(s) < 0.5 ? 0 : 1;                     // a coin toss decides who starts
@@ -47,7 +51,13 @@ const opp = (s, p) => s.players[1 - p.i];
 
 // ------------------------------------------------------------------ drawing
 function draw(s, p, quiet) {
-  if (!p.deck.length) { p.fatigue++; log(s, 'fatigue', { p: p.i, n: p.fatigue }); loseSp(s, p, p.fatigue, null, true); return null; }
+  if (!p.deck.length) {
+    p.fatigue++;
+    if (!p.discard.length) { log(s, 'fatigue', { p: p.i, n: p.fatigue }); loseSp(s, p, p.fatigue, null, true); return null; }
+    // the deck ran out: the discard pile is shuffled into a new deck, and that costs SP (more each time)
+    p.deck = shuffle(s, p.discard.splice(0)); log(s, 'reshuffle', { p: p.i, n: p.fatigue * RULES.reshuffleSp }); loseSp(s, p, p.fatigue * RULES.reshuffleSp, null, true);
+    if (s.winner != null) return null;
+  }
   const id = p.deck.pop();
   if (p.hand.length >= 10) { p.discard.push(id); log(s, 'burn', { p: p.i, id }); return null; }
   p.hand.push(id); if (!quiet) log(s, 'draw', { p: p.i });
@@ -77,7 +87,7 @@ export function startTurn(s) {
   if (s.winner != null) return;
   // draw phase
   let n = 1 + ((L && L.rule.drawExtra) || 0);
-  if (p.hero === 'josh' && p.hand.length <= 3) n++;
+  if (p.hero === 'josh' && p.hand.length <= TUNE.joshHand) n++;
   for (let k = 0; k < n && s.winner == null; k++) draw(s, p);
 }
 export function endTurn(s) {
@@ -94,7 +104,7 @@ export function costOf(s, p, id) {
   const c = CARDS[id], L = s.loc && CARDS[s.loc.id];
   let cost = c.cost + p.tax;
   if (L) cost += c.type === 'action' ? L.rule.costAction || 0 : c.type === 'item' ? L.rule.costItem || 0 : c.type === 'character' ? L.rule.costChar || 0 : 0;
-  if (c.type === 'item' && p.hero === 'erin') cost -= 1;
+  if (c.type === 'item' && p.hero === 'erin') cost -= TUNE.momItems;
   return Math.max(0, cost);
 }
 export const canPlay = (s, p, id) => s.winner == null && s.cur === p.i && costOf(s, p, id) <= p.energy;
@@ -122,8 +132,8 @@ export function playCard(s, handIndex) {
 // ------------------------------------------------------------------ effects
 function dmgBonus(s, p, ctx) {
   let b = 0;
-  if (ctx.src === 'card' && p.hero === 'jeff') b += 1;                              // Dad Joke
-  if (ctx.src === 'card' && p.hero === 'jasper' && p.sp < 8) b += 1;                // meltdown
+  if (ctx.src === 'card' && p.hero === 'jeff') b += TUNE.dadJoke;                     // Dad Joke
+  if (ctx.src === 'card' && p.hero === 'jasper' && p.sp < TUNE.meltdownAt) b += TUNE.meltdown;   // meltdown
   for (const it of p.items) b += CARDS[it.id].mods?.boost || 0;
   const L = s.loc && CARDS[s.loc.id]; if (L) b += L.rule.dmgMod || 0;
   return b;
@@ -152,13 +162,17 @@ export function apply(s, p, ops, ctx = {}) {
       case 'clearItem': if (o.items.length) { const it = o.items.splice(0, 1)[0]; o.discard.push(it.id); log(s, 'cleared', { p: o.i, id: it.id }); } break;
       case 'clearAlly': if (o.allies.length) { const a2 = o.allies.splice(0, 1)[0]; o.discard.push(a2.id); log(s, 'cleared', { p: o.i, id: a2.id }); } break;
       case 'clearLoc': if (s.loc) { s.players[s.loc.owner].discard.push(s.loc.id); log(s, 'cleared', { id: s.loc.id }); s.loc = null; } break;
+      case 'clearItems': for (const it of o.items.splice(0)) { o.discard.push(it.id); log(s, 'cleared', { p: o.i, id: it.id }); } break;
+      case 'ramp': { const n = num(a); p.maxEnergy = Math.min(RULES.maxEnergy, p.maxEnergy + n); p.energy += n; log(s, 'ramp', { p: p.i, n }); break; }
+      case 'refill': p.energy = Math.max(p.energy, p.maxEnergy); log(s, 'energy', { p: p.i, n: p.maxEnergy }); break;
+      case 'cleanse': p.poison = []; p.tax = 0; p.sap = 0; log(s, 'cleanse', { p: p.i }); break;
     }
   }
 }
 function heal(s, p, n, why) {
   const L = s.loc && CARDS[s.loc.id];
   n += (L && L.rule.healMod) || 0;
-  if (p.hero === 'erin') n += 2;                                                     // Super Mom
+  if (p.hero === 'erin') n += TUNE.momHeal;                                          // Super Mom
   const before = p.sp; p.sp = Math.min(p.maxSp, p.sp + Math.max(0, n));
   if (p.sp > before) log(s, 'heal', { p: p.i, n: p.sp - before, why });
 }
@@ -167,7 +181,7 @@ function dealDamage(s, t, n, from, fromCard) {
   if (n <= 0) return;
   if (t.reflect) { t.reflect = false; log(s, 'reflected', { p: t.i }); loseSp(s, from, n, null, true); return; }
   for (const it of t.items) n -= CARDS[it.id].mods?.armor || 0;
-  if (t.hero === 'jasper' && t.cuteReady && fromCard && n >= 3) { t.cuteReady = false; n -= 1; }
+  if (t.hero === 'jasper' && t.cuteReady && fromCard && n >= 3) { t.cuteReady = false; n -= TUNE.cute; }
   if (n <= 0) { log(s, 'blocked', { p: t.i }); return; }
   loseSp(s, t, n, from, false);
   const thorns = t.items.reduce((a, it) => a + (CARDS[it.id].mods?.thorns || 0), 0);
@@ -194,6 +208,8 @@ export function evaluate(s, me) {
   v += o.poison.reduce((a, x) => a + x.n * x.t, 0) * 0.8 + p.regen.reduce((a, x) => a + x.n * x.t, 0) * 0.6;
   if (s.loc) v += s.loc.owner === me ? 2 : -1.5;
   v += p.energy * 0.15 + (p.reflect ? 2.5 : 0) + o.tax * 0.8 + o.sap * 1;
+  v -= p.poison.reduce((a, x) => a + x.n * x.t, 0) * 0.8 + p.tax * 0.8 + p.sap * 1;
+  v += (p.maxEnergy - o.maxEnergy) * (s.turn < 14 ? 1.2 : 0.3);
   return v;
 }
 export function cpuPlan(s, level = 'normal') {
