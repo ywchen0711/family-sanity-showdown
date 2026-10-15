@@ -1,0 +1,6 @@
+{
+  "name": "family-sanity-showdown",
+  "private": true,
+  "type": "module",
+  "scripts": { "build": "node tools/build-cards.mjs", "test": "node tools/build-cards.mjs && node tools/test.mjs" }
+}

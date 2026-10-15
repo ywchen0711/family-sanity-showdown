@@ -1,0 +1,4377 @@
+{
+ "version": 1,
+ "game": "Family Sanity Showdown",
+ "counts": {
+  "total": 180,
+  "character": 20,
+  "action": 70,
+  "item": 50,
+  "location": 40
+ },
+ "heroes": [
+  {
+   "key": "jeff",
+   "cardId": "C001",
+   "sp": 24,
+   "hand": 4,
+   "passive": {
+    "id": "dadJoke",
+    "zh": "爸爸冷笑話：你打出的每張「讓對手失去理智」的牌，傷害 +1。",
+    "en": "Dad Joke: every card you play that makes the opponent lose SP deals +1."
+   }
+  },
+  {
+   "key": "erin",
+   "cardId": "C002",
+   "sp": 26,
+   "hand": 4,
+   "passive": {
+    "id": "superMom",
+    "zh": "超級媽媽：你的回復效果 +2，道具少花 1 點能量。",
+    "en": "Super Mom: your healing restores 2 more, and your items cost 1 less."
+   }
+  },
+  {
+   "key": "josh",
+   "cardId": "C003",
+   "sp": 30,
+   "hand": 5,
+   "passive": {
+    "id": "quickThinker",
+    "zh": "腦筋轉很快：抽牌階段如果手牌 3 張以下，多抽 1 張；起手 5 張牌。",
+    "en": "Quick Thinker: in the draw phase, with 3 or fewer cards in hand, draw 1 more; starts with 5 cards."
+   }
+  },
+  {
+   "key": "jasper",
+   "cardId": "C004",
+   "sp": 20,
+   "hand": 4,
+   "passive": {
+    "id": "cuteFace",
+    "zh": "可愛臉：每個對手回合，對手打出的牌第一次讓你失去 3 點以上理智時，少失去 1 點；理智低於 8 時，你打出的牌傷害 +1（大哭大鬧）。",
+    "en": "Cute Face: in each opponent turn, the first card that would cost you 3 or more SP costs 1 less; below 8 SP your cards deal +1 (meltdown)."
+   }
+  }
+ ],
+ "cards": [
+  {
+   "id": "C001",
+   "name": {
+    "zh": "Jeff 爸爸",
+    "en": "Jeff (Dad)"
+   },
+   "type": "character",
+   "cost": 0,
+   "value": 24,
+   "hero": "jeff",
+   "icon": "👨",
+   "effect": {
+    "zh": "主角：理智 24，起手 4 張。爸爸冷笑話：你打出的每張「讓對手失去理智」的牌，傷害 +1。",
+    "en": "Hero: 24 SP, starts with 4 cards. Dad Joke: every card you play that makes the opponent lose SP deals +1."
+   },
+   "fx": [],
+   "stats": {
+    "sp": 24,
+    "hand": 4
+   },
+   "passive": "dadJoke",
+   "color": "#3a7ad8"
+  },
+  {
+   "id": "C002",
+   "name": {
+    "zh": "Erin 媽媽",
+    "en": "Erin (Mom)"
+   },
+   "type": "character",
+   "cost": 0,
+   "value": 26,
+   "hero": "erin",
+   "icon": "👩",
+   "effect": {
+    "zh": "主角：理智 26，起手 4 張。超級媽媽：你的回復效果 +2，道具少花 1 點能量。",
+    "en": "Hero: 26 SP, starts with 4 cards. Super Mom: your healing restores 2 more, and your items cost 1 less."
+   },
+   "fx": [],
+   "stats": {
+    "sp": 26,
+    "hand": 4
+   },
+   "passive": "superMom",
+   "color": "#d8407a"
+  },
+  {
+   "id": "C003",
+   "name": {
+    "zh": "Josh 哥哥（10 歲）",
+    "en": "Josh (big brother, 10)"
+   },
+   "type": "character",
+   "cost": 0,
+   "value": 30,
+   "hero": "josh",
+   "icon": "👦",
+   "effect": {
+    "zh": "主角：理智 30，起手 5 張。腦筋轉很快：抽牌階段如果手牌 3 張以下，多抽 1 張；起手 5 張牌。",
+    "en": "Hero: 30 SP, starts with 5 cards. Quick Thinker: in the draw phase, with 3 or fewer cards in hand, draw 1 more; starts with 5 cards."
+   },
+   "fx": [],
+   "stats": {
+    "sp": 30,
+    "hand": 5
+   },
+   "passive": "quickThinker",
+   "color": "#2aa86a"
+  },
+  {
+   "id": "C004",
+   "name": {
+    "zh": "Jasper 弟弟（8 歲）",
+    "en": "Jasper (little brother, 8)"
+   },
+   "type": "character",
+   "cost": 0,
+   "value": 20,
+   "hero": "jasper",
+   "icon": "🧒",
+   "effect": {
+    "zh": "主角：理智 20，起手 4 張。可愛臉：每個對手回合，對手打出的牌第一次讓你失去 3 點以上理智時，少失去 1 點；理智低於 8 時，你打出的牌傷害 +1（大哭大鬧）。",
+    "en": "Hero: 20 SP, starts with 4 cards. Cute Face: in each opponent turn, the first card that would cost you 3 or more SP costs 1 less; below 8 SP your cards deal +1 (meltdown)."
+   },
+   "fx": [],
+   "stats": {
+    "sp": 20,
+    "hand": 4
+   },
+   "passive": "cuteFace",
+   "color": "#f0a020"
+  },
+  {
+   "id": "C005",
+   "name": {
+    "zh": "奶奶",
+    "en": "Grandma"
+   },
+   "type": "character",
+   "cost": 3,
+   "value": 3,
+   "icon": "👵",
+   "fx": [],
+   "tick": [
+    [
+     "heal",
+     2
+    ]
+   ],
+   "turns": 3,
+   "effect": {
+    "zh": "來你家 3 回合：你的每回合開始時，回復 2 點理智。",
+    "en": "Visits for 3 turns: at the start of each of your turns, restore 2 SP."
+   }
+  },
+  {
+   "id": "C006",
+   "name": {
+    "zh": "爺爺講古",
+    "en": "Grandpa's Long Story"
+   },
+   "type": "character",
+   "cost": 2,
+   "value": 4,
+   "icon": "👴",
+   "fx": [],
+   "tick": [
+    [
+     "dmg",
+     1
+    ]
+   ],
+   "turns": 4,
+   "effect": {
+    "zh": "來你家 4 回合：你的每回合開始時，對手失去 1 點理智。",
+    "en": "Visits for 4 turns: at the start of each of your turns, Opponent loses 1 SP."
+   }
+  },
+  {
+   "id": "C007",
+   "name": {
+    "zh": "小狗旺財",
+    "en": "Puppy"
+   },
+   "type": "character",
+   "cost": 2,
+   "value": 2,
+   "icon": "🐶",
+   "fx": [],
+   "tick": [
+    [
+     "dmg",
+     2
+    ]
+   ],
+   "turns": 2,
+   "effect": {
+    "zh": "來你家 2 回合：你的每回合開始時，對手失去 2 點理智。",
+    "en": "Visits for 2 turns: at the start of each of your turns, Opponent loses 2 SP."
+   }
+  },
+  {
+   "id": "C008",
+   "name": {
+    "zh": "小貓咪",
+    "en": "Kitten"
+   },
+   "type": "character",
+   "cost": 1,
+   "value": 3,
+   "icon": "🐱",
+   "fx": [],
+   "tick": [
+    [
+     "heal",
+     1
+    ]
+   ],
+   "turns": 3,
+   "effect": {
+    "zh": "來你家 3 回合：你的每回合開始時，回復 1 點理智。",
+    "en": "Visits for 3 turns: at the start of each of your turns, restore 1 SP."
+   }
+  },
+  {
+   "id": "C009",
+   "name": {
+    "zh": "保母",
+    "en": "Babysitter"
+   },
+   "type": "character",
+   "cost": 3,
+   "value": 3,
+   "icon": "👩‍🍼",
+   "fx": [],
+   "tick": [
+    [
+     "draw",
+     1
+    ]
+   ],
+   "turns": 3,
+   "effect": {
+    "zh": "來你家 3 回合：你的每回合開始時，抽 1 張牌。",
+    "en": "Visits for 3 turns: at the start of each of your turns, draw 1 card."
+   }
+  },
+  {
+   "id": "C010",
+   "name": {
+    "zh": "除草的鄰居",
+    "en": "Lawnmower Neighbor"
+   },
+   "type": "character",
+   "cost": 4,
+   "value": 3,
+   "icon": "🧔",
+   "fx": [],
+   "tick": [
+    [
+     "dmg",
+     2
+    ]
+   ],
+   "turns": 3,
+   "effect": {
+    "zh": "來你家 3 回合：你的每回合開始時，對手失去 2 點理智。",
+    "en": "Visits for 3 turns: at the start of each of your turns, Opponent loses 2 SP."
+   }
+  },
+  {
+   "id": "C011",
+   "name": {
+    "zh": "嚴格老師",
+    "en": "Strict Teacher"
+   },
+   "type": "character",
+   "cost": 4,
+   "value": 2,
+   "icon": "👩‍🏫",
+   "fx": [],
+   "tick": [
+    [
+     "discard",
+     1
+    ]
+   ],
+   "turns": 2,
+   "effect": {
+    "zh": "來你家 2 回合：你的每回合開始時，對手隨機棄掉 1 張手牌。",
+    "en": "Visits for 2 turns: at the start of each of your turns, opponent discards 1 random card."
+   }
+  },
+  {
+   "id": "C012",
+   "name": {
+    "zh": "表哥",
+    "en": "Cousin"
+   },
+   "type": "character",
+   "cost": 3,
+   "value": 3,
+   "icon": "🧑",
+   "fx": [],
+   "tick": [
+    [
+     "energy",
+     1
+    ]
+   ],
+   "turns": 3,
+   "effect": {
+    "zh": "來你家 3 回合：你的每回合開始時，獲得 1 點能量。",
+    "en": "Visits for 3 turns: at the start of each of your turns, gain 1 energy."
+   }
+  },
+  {
+   "id": "C013",
+   "name": {
+    "zh": "冰淇淋車",
+    "en": "Ice-Cream Truck"
+   },
+   "type": "character",
+   "cost": 3,
+   "value": 2,
+   "icon": "🍦",
+   "fx": [],
+   "tick": [
+    [
+     "heal",
+     3
+    ]
+   ],
+   "turns": 2,
+   "effect": {
+    "zh": "來你家 2 回合：你的每回合開始時，回復 3 點理智。",
+    "en": "Visits for 2 turns: at the start of each of your turns, restore 3 SP."
+   }
+  },
+  {
+   "id": "C014",
+   "name": {
+    "zh": "外送員",
+    "en": "Delivery Rider"
+   },
+   "type": "character",
+   "cost": 4,
+   "value": 2,
+   "icon": "🛵",
+   "fx": [],
+   "tick": [
+    [
+     "draw",
+     1
+    ],
+    [
+     "energy",
+     1
+    ]
+   ],
+   "turns": 2,
+   "effect": {
+    "zh": "來你家 2 回合：你的每回合開始時，抽 1 張牌，獲得 1 點能量。",
+    "en": "Visits for 2 turns: at the start of each of your turns, draw 1 card, gain 1 energy."
+   }
+  },
+  {
+   "id": "C015",
+   "name": {
+    "zh": "足球教練",
+    "en": "Soccer Coach"
+   },
+   "type": "character",
+   "cost": 3,
+   "value": 3,
+   "icon": "🏃",
+   "fx": [],
+   "tick": [
+    [
+     "shield",
+     2
+    ]
+   ],
+   "turns": 3,
+   "effect": {
+    "zh": "來你家 3 回合：你的每回合開始時，獲得 2 點護盾（先擋傷害）。",
+    "en": "Visits for 3 turns: at the start of each of your turns, gain 2 shield (blocks damage first)."
+   }
+  },
+  {
+   "id": "C016",
+   "name": {
+    "zh": "倉鼠",
+    "en": "Hamster"
+   },
+   "type": "character",
+   "cost": 1,
+   "value": 3,
+   "icon": "🐹",
+   "fx": [],
+   "tick": [
+    [
+     "shield",
+     1
+    ]
+   ],
+   "turns": 3,
+   "effect": {
+    "zh": "來你家 3 回合：你的每回合開始時，獲得 1 點護盾（先擋傷害）。",
+    "en": "Visits for 3 turns: at the start of each of your turns, gain 1 shield (blocks damage first)."
+   }
+  },
+  {
+   "id": "C017",
+   "name": {
+    "zh": "掃地機器人",
+    "en": "Robot Vacuum"
+   },
+   "type": "character",
+   "cost": 2,
+   "value": 3,
+   "icon": "🤖",
+   "fx": [],
+   "tick": [
+    [
+     "mill",
+     1
+    ]
+   ],
+   "turns": 3,
+   "effect": {
+    "zh": "來你家 3 回合：你的每回合開始時，對手牌庫最上面 1 張被丟掉。",
+    "en": "Visits for 3 turns: at the start of each of your turns, the top 1 card of the opponent's deck are thrown away."
+   }
+  },
+  {
+   "id": "C018",
+   "name": {
+    "zh": "愛聊天的阿姨",
+    "en": "Chatty Aunt"
+   },
+   "type": "character",
+   "cost": 3,
+   "value": 3,
+   "icon": "👩‍🦰",
+   "fx": [],
+   "tick": [
+    [
+     "dmg",
+     1
+    ],
+    [
+     "heal",
+     1
+    ]
+   ],
+   "turns": 3,
+   "effect": {
+    "zh": "來你家 3 回合：你的每回合開始時，對手失去 1 點理智，回復 1 點理智。",
+    "en": "Visits for 3 turns: at the start of each of your turns, Opponent loses 1 SP, restore 1 SP."
+   }
+  },
+  {
+   "id": "C019",
+   "name": {
+    "zh": "郵差",
+    "en": "Mail Carrier"
+   },
+   "type": "character",
+   "cost": 2,
+   "value": 2,
+   "icon": "📮",
+   "fx": [],
+   "tick": [
+    [
+     "draw",
+     1
+    ]
+   ],
+   "turns": 2,
+   "effect": {
+    "zh": "來你家 2 回合：你的每回合開始時，抽 1 張牌。",
+    "en": "Visits for 2 turns: at the start of each of your turns, draw 1 card."
+   }
+  },
+  {
+   "id": "C020",
+   "name": {
+    "zh": "校長",
+    "en": "Principal"
+   },
+   "type": "character",
+   "cost": 5,
+   "value": 2,
+   "icon": "🧑‍💼",
+   "fx": [],
+   "tick": [
+    [
+     "tax",
+     1
+    ],
+    [
+     "dmg",
+     1
+    ]
+   ],
+   "turns": 2,
+   "effect": {
+    "zh": "來你家 2 回合：你的每回合開始時，對手下一張牌多花 1 點能量，對手失去 1 點理智。",
+    "en": "Visits for 2 turns: at the start of each of your turns, the opponent's next card costs 1 more, Opponent loses 1 SP."
+   }
+  },
+  {
+   "id": "A001",
+   "name": {
+    "zh": "尖叫",
+    "en": "Scream"
+   },
+   "type": "action",
+   "cost": 1,
+   "value": 2,
+   "icon": "😱",
+   "fx": [
+    [
+     "dmg",
+     2
+    ]
+   ],
+   "effect": {
+    "zh": "對手失去 2 點理智。",
+    "en": "Opponent loses 2 SP."
+   }
+  },
+  {
+   "id": "A002",
+   "name": {
+    "zh": "打翻牛奶",
+    "en": "Spilled Milk"
+   },
+   "type": "action",
+   "cost": 1,
+   "value": 2,
+   "icon": "🥛",
+   "fx": [
+    [
+     "dmg",
+     2
+    ]
+   ],
+   "effect": {
+    "zh": "對手失去 2 點理智。",
+    "en": "Opponent loses 2 SP."
+   }
+  },
+  {
+   "id": "A003",
+   "name": {
+    "zh": "大聲唱歌",
+    "en": "Loud Singing"
+   },
+   "type": "action",
+   "cost": 2,
+   "value": 3,
+   "icon": "🎤",
+   "fx": [
+    [
+     "dmg",
+     3
+    ]
+   ],
+   "effect": {
+    "zh": "對手失去 3 點理智。",
+    "en": "Opponent loses 3 SP."
+   }
+  },
+  {
+   "id": "A004",
+   "name": {
+    "zh": "樂高地雷",
+    "en": "Lego Landmine"
+   },
+   "type": "action",
+   "cost": 2,
+   "value": 2,
+   "icon": "🧱",
+   "fx": [
+    [
+     "dmg",
+     2
+    ]
+   ],
+   "hero": "jasper",
+   "effect": {
+    "zh": "對手失去 2 點理智。（Jasper 打出時數值 +1）",
+    "en": "Opponent loses 2 SP. (+1 when Jasper plays it)"
+   }
+  },
+  {
+   "id": "A005",
+   "name": {
+    "zh": "枕頭大戰",
+    "en": "Pillow Fight"
+   },
+   "type": "action",
+   "cost": 1,
+   "value": 3,
+   "icon": "🛏️",
+   "fx": [
+    [
+     "dmg",
+     3
+    ],
+    [
+     "self",
+     1
+    ]
+   ],
+   "effect": {
+    "zh": "對手失去 3 點理智，你自己失去 1 點理智。",
+    "en": "Opponent loses 3 SP, you lose 1 SP."
+   }
+  },
+  {
+   "id": "A006",
+   "name": {
+    "zh": "搶遙控器",
+    "en": "Remote Grab"
+   },
+   "type": "action",
+   "cost": 2,
+   "value": 1,
+   "icon": "📺",
+   "fx": [
+    [
+     "steal",
+     1
+    ],
+    [
+     "dmg",
+     1
+    ]
+   ],
+   "effect": {
+    "zh": "從對手手牌偷走 1 張，對手失去 1 點理智。",
+    "en": "Steal 1 card from the opponent's hand, Opponent loses 1 SP."
+   }
+  },
+  {
+   "id": "A007",
+   "name": {
+    "zh": "一直問為什麼",
+    "en": "Endless Whys"
+   },
+   "type": "action",
+   "cost": 3,
+   "value": 3,
+   "icon": "❓",
+   "fx": [
+    [
+     "dmg",
+     3
+    ]
+   ],
+   "hero": "jasper",
+   "effect": {
+    "zh": "對手失去 3 點理智。（Jasper 打出時數值 +1）",
+    "en": "Opponent loses 3 SP. (+1 when Jasper plays it)"
+   }
+  },
+  {
+   "id": "A008",
+   "name": {
+    "zh": "爸爸冷笑話",
+    "en": "Dad Joke"
+   },
+   "type": "action",
+   "cost": 1,
+   "value": 2,
+   "icon": "😂",
+   "fx": [
+    [
+     "dmg",
+     2
+    ]
+   ],
+   "hero": "jeff",
+   "effect": {
+    "zh": "對手失去 2 點理智。（Jeff 打出時數值 +1）",
+    "en": "Opponent loses 2 SP. (+1 when Jeff plays it)"
+   }
+  },
+  {
+   "id": "A009",
+   "name": {
+    "zh": "不想寫作業",
+    "en": "Homework Strike"
+   },
+   "type": "action",
+   "cost": 3,
+   "value": 4,
+   "icon": "📚",
+   "fx": [
+    [
+     "dmg",
+     4
+    ]
+   ],
+   "hero": "josh",
+   "effect": {
+    "zh": "對手失去 4 點理智。（Josh 打出時數值 +1）",
+    "en": "Opponent loses 4 SP. (+1 when Josh plays it)"
+   }
+  },
+  {
+   "id": "A010",
+   "name": {
+    "zh": "鬧鐘狂響",
+    "en": "Alarm Clock"
+   },
+   "type": "action",
+   "cost": 2,
+   "value": 2,
+   "icon": "⏰",
+   "fx": [
+    [
+     "dmg",
+     2
+    ],
+    [
+     "discard",
+     1
+    ]
+   ],
+   "effect": {
+    "zh": "對手失去 2 點理智，對手隨機棄掉 1 張手牌。",
+    "en": "Opponent loses 2 SP, opponent discards 1 random card."
+   }
+  },
+  {
+   "id": "A011",
+   "name": {
+    "zh": "鑰匙不見了",
+    "en": "Lost Keys"
+   },
+   "type": "action",
+   "cost": 3,
+   "value": 3,
+   "icon": "🔑",
+   "fx": [
+    [
+     "dmg",
+     3
+    ],
+    [
+     "tax",
+     1
+    ]
+   ],
+   "effect": {
+    "zh": "對手失去 3 點理智，對手下一張牌多花 1 點能量。",
+    "en": "Opponent loses 3 SP, the opponent's next card costs 1 more."
+   }
+  },
+  {
+   "id": "A012",
+   "name": {
+    "zh": "快遲到了",
+    "en": "Running Late"
+   },
+   "type": "action",
+   "cost": 3,
+   "value": 5,
+   "icon": "🏃‍♂️",
+   "fx": [
+    [
+     "dmg",
+     5
+    ],
+    [
+     "self",
+     1
+    ]
+   ],
+   "effect": {
+    "zh": "對手失去 5 點理智，你自己失去 1 點理智。",
+    "en": "Opponent loses 5 SP, you lose 1 SP."
+   }
+  },
+  {
+   "id": "A013",
+   "name": {
+    "zh": "電動玩太久",
+    "en": "Too Much Gaming"
+   },
+   "type": "action",
+   "cost": 3,
+   "value": 4,
+   "icon": "🎮",
+   "fx": [
+    [
+     "dmg",
+     4
+    ]
+   ],
+   "hero": "josh",
+   "effect": {
+    "zh": "對手失去 4 點理智。（Josh 打出時數值 +1）",
+    "en": "Opponent loses 4 SP. (+1 when Josh plays it)"
+   }
+  },
+  {
+   "id": "A014",
+   "name": {
+    "zh": "打破花瓶",
+    "en": "Broken Vase"
+   },
+   "type": "action",
+   "cost": 4,
+   "value": 6,
+   "icon": "🏺",
+   "fx": [
+    [
+     "dmg",
+     6
+    ]
+   ],
+   "effect": {
+    "zh": "對手失去 6 點理智。",
+    "en": "Opponent loses 6 SP."
+   }
+  },
+  {
+   "id": "A015",
+   "name": {
+    "zh": "家長會",
+    "en": "Parent-Teacher Night"
+   },
+   "type": "action",
+   "cost": 4,
+   "value": 5,
+   "icon": "🏫",
+   "fx": [
+    [
+     "dmg",
+     5
+    ],
+    [
+     "discard",
+     1
+    ]
+   ],
+   "effect": {
+    "zh": "對手失去 5 點理智，對手隨機棄掉 1 張手牌。",
+    "en": "Opponent loses 5 SP, opponent discards 1 random card."
+   }
+  },
+  {
+   "id": "A016",
+   "name": {
+    "zh": "大掃除",
+    "en": "Spring Cleaning"
+   },
+   "type": "action",
+   "cost": 5,
+   "value": 7,
+   "icon": "🧹",
+   "fx": [
+    [
+     "dmg",
+     7
+    ]
+   ],
+   "effect": {
+    "zh": "對手失去 7 點理智。",
+    "en": "Opponent loses 7 SP."
+   }
+  },
+  {
+   "id": "A017",
+   "name": {
+    "zh": "生日派對失控",
+    "en": "Party Chaos"
+   },
+   "type": "action",
+   "cost": 6,
+   "value": 9,
+   "icon": "🎂",
+   "fx": [
+    [
+     "dmg",
+     9
+    ]
+   ],
+   "effect": {
+    "zh": "對手失去 9 點理智。",
+    "en": "Opponent loses 9 SP."
+   }
+  },
+  {
+   "id": "A018",
+   "name": {
+    "zh": "拖鞋飛彈",
+    "en": "Slipper Missile"
+   },
+   "type": "action",
+   "cost": 2,
+   "value": 3,
+   "icon": "🩴",
+   "fx": [
+    [
+     "dmg",
+     3
+    ]
+   ],
+   "hero": "erin",
+   "effect": {
+    "zh": "對手失去 3 點理智。（Erin 打出時數值 +1）",
+    "en": "Opponent loses 3 SP. (+1 when Erin plays it)"
+   }
+  },
+  {
+   "id": "A019",
+   "name": {
+    "zh": "洗澡大逃亡",
+    "en": "Bath Escape"
+   },
+   "type": "action",
+   "cost": 2,
+   "value": 3,
+   "icon": "🛁",
+   "fx": [
+    [
+     "dmg",
+     3
+    ]
+   ],
+   "effect": {
+    "zh": "對手失去 3 點理智。",
+    "en": "Opponent loses 3 SP."
+   }
+  },
+  {
+   "id": "A020",
+   "name": {
+    "zh": "不吃青菜",
+    "en": "Veggie Refusal"
+   },
+   "type": "action",
+   "cost": 1,
+   "value": 2,
+   "icon": "🥦",
+   "fx": [
+    [
+     "dmg",
+     2
+    ]
+   ],
+   "effect": {
+    "zh": "對手失去 2 點理智。",
+    "en": "Opponent loses 2 SP."
+   }
+  },
+  {
+   "id": "A021",
+   "name": {
+    "zh": "惡作劇電話",
+    "en": "Prank Call"
+   },
+   "type": "action",
+   "cost": 2,
+   "value": 1,
+   "icon": "☎️",
+   "fx": [
+    [
+     "dmg",
+     1
+    ],
+    [
+     "poison",
+     1,
+     3
+    ]
+   ],
+   "effect": {
+    "zh": "對手失去 1 點理智，接下來 3 回合，對手每回合失去 1 點理智。",
+    "en": "Opponent loses 1 SP, for 3 turns the opponent loses 1 SP each turn."
+   }
+  },
+  {
+   "id": "A022",
+   "name": {
+    "zh": "噪音轟炸",
+    "en": "Noise Bomb"
+   },
+   "type": "action",
+   "cost": 4,
+   "value": 2,
+   "icon": "📢",
+   "fx": [
+    [
+     "poison",
+     2,
+     3
+    ]
+   ],
+   "effect": {
+    "zh": "接下來 3 回合，對手每回合失去 2 點理智。",
+    "en": "For 3 turns the opponent loses 2 SP each turn."
+   }
+  },
+  {
+   "id": "A023",
+   "name": {
+    "zh": "哈啾",
+    "en": "Achoo"
+   },
+   "type": "action",
+   "cost": 0,
+   "value": 1,
+   "icon": "🤧",
+   "fx": [
+    [
+     "dmg",
+     1
+    ]
+   ],
+   "effect": {
+    "zh": "對手失去 1 點理智。",
+    "en": "Opponent loses 1 SP."
+   }
+  },
+  {
+   "id": "A024",
+   "name": {
+    "zh": "踩到積木",
+    "en": "Step on a Block"
+   },
+   "type": "action",
+   "cost": 1,
+   "value": 2,
+   "icon": "🦶",
+   "fx": [
+    [
+     "dmg",
+     2
+    ]
+   ],
+   "effect": {
+    "zh": "對手失去 2 點理智。",
+    "en": "Opponent loses 2 SP."
+   }
+  },
+  {
+   "id": "A025",
+   "name": {
+    "zh": "搶最後一塊餅乾",
+    "en": "The Last Cookie"
+   },
+   "type": "action",
+   "cost": 2,
+   "value": 2,
+   "icon": "🍪",
+   "fx": [
+    [
+     "dmg",
+     2
+    ],
+    [
+     "heal",
+     2
+    ]
+   ],
+   "effect": {
+    "zh": "對手失去 2 點理智，回復 2 點理智。",
+    "en": "Opponent loses 2 SP, restore 2 SP."
+   }
+  },
+  {
+   "id": "A026",
+   "name": {
+    "zh": "告狀",
+    "en": "Tattletale"
+   },
+   "type": "action",
+   "cost": 2,
+   "value": 1,
+   "icon": "🗣️",
+   "fx": [
+    [
+     "dmg",
+     1
+    ],
+    [
+     "discard",
+     1
+    ]
+   ],
+   "hero": "jasper",
+   "effect": {
+    "zh": "對手失去 1 點理智，對手隨機棄掉 1 張手牌。（Jasper 打出時數值 +1）",
+    "en": "Opponent loses 1 SP, opponent discards 1 random card. (+1 when Jasper plays it)"
+   }
+  },
+  {
+   "id": "A027",
+   "name": {
+    "zh": "「我好無聊」",
+    "en": "\"I'm Bored\""
+   },
+   "type": "action",
+   "cost": 2,
+   "value": 1,
+   "icon": "🥱",
+   "fx": [
+    [
+     "dmg",
+     1
+    ],
+    [
+     "draw",
+     1
+    ]
+   ],
+   "effect": {
+    "zh": "對手失去 1 點理智，抽 1 張牌。",
+    "en": "Opponent loses 1 SP, draw 1 card."
+   }
+  },
+  {
+   "id": "A028",
+   "name": {
+    "zh": "弄亂衣櫃",
+    "en": "Messy Closet"
+   },
+   "type": "action",
+   "cost": 3,
+   "value": 2,
+   "icon": "👕",
+   "fx": [
+    [
+     "dmg",
+     2
+    ],
+    [
+     "mill",
+     2
+    ]
+   ],
+   "effect": {
+    "zh": "對手失去 2 點理智，對手牌庫最上面 2 張被丟掉。",
+    "en": "Opponent loses 2 SP, the top 2 cards of the opponent's deck are thrown away."
+   }
+  },
+  {
+   "id": "A029",
+   "name": {
+    "zh": "洗衣機壞掉",
+    "en": "Broken Washer"
+   },
+   "type": "action",
+   "cost": 4,
+   "value": 4,
+   "icon": "🫧",
+   "fx": [
+    [
+     "dmg",
+     4
+    ],
+    [
+     "tax",
+     1
+    ]
+   ],
+   "effect": {
+    "zh": "對手失去 4 點理智，對手下一張牌多花 1 點能量。",
+    "en": "Opponent loses 4 SP, the opponent's next card costs 1 more."
+   }
+  },
+  {
+   "id": "A030",
+   "name": {
+    "zh": "寵物逃跑了",
+    "en": "Runaway Pet"
+   },
+   "type": "action",
+   "cost": 3,
+   "value": 3,
+   "icon": "🐕",
+   "fx": [
+    [
+     "dmg",
+     3
+    ],
+    [
+     "discard",
+     1
+    ]
+   ],
+   "effect": {
+    "zh": "對手失去 3 點理智，對手隨機棄掉 1 張手牌。",
+    "en": "Opponent loses 3 SP, opponent discards 1 random card."
+   }
+  },
+  {
+   "id": "A031",
+   "name": {
+    "zh": "深呼吸",
+    "en": "Deep Breath"
+   },
+   "type": "action",
+   "cost": 1,
+   "value": 3,
+   "icon": "😮‍💨",
+   "fx": [
+    [
+     "heal",
+     3
+    ]
+   ],
+   "effect": {
+    "zh": "回復 3 點理智。",
+    "en": "Restore 3 SP."
+   }
+  },
+  {
+   "id": "A032",
+   "name": {
+    "zh": "熱可可",
+    "en": "Hot Cocoa"
+   },
+   "type": "action",
+   "cost": 2,
+   "value": 4,
+   "icon": "☕",
+   "fx": [
+    [
+     "heal",
+     4
+    ]
+   ],
+   "effect": {
+    "zh": "回復 4 點理智。",
+    "en": "Restore 4 SP."
+   }
+  },
+  {
+   "id": "A033",
+   "name": {
+    "zh": "睡個午覺",
+    "en": "Power Nap"
+   },
+   "type": "action",
+   "cost": 3,
+   "value": 6,
+   "icon": "😴",
+   "fx": [
+    [
+     "heal",
+     6
+    ]
+   ],
+   "effect": {
+    "zh": "回復 6 點理智。",
+    "en": "Restore 6 SP."
+   }
+  },
+  {
+   "id": "A034",
+   "name": {
+    "zh": "全家抱抱",
+    "en": "Family Hug"
+   },
+   "type": "action",
+   "cost": 2,
+   "value": 3,
+   "icon": "🤗",
+   "fx": [
+    [
+     "heal",
+     3
+    ],
+    [
+     "draw",
+     1
+    ]
+   ],
+   "hero": "erin",
+   "effect": {
+    "zh": "回復 3 點理智，抽 1 張牌。（Erin 打出時數值 +1）",
+    "en": "Restore 3 SP, draw 1 card. (+1 when Erin plays it)"
+   }
+  },
+  {
+   "id": "A035",
+   "name": {
+    "zh": "泡泡浴",
+    "en": "Bubble Bath"
+   },
+   "type": "action",
+   "cost": 4,
+   "value": 8,
+   "icon": "🛀",
+   "fx": [
+    [
+     "heal",
+     8
+    ]
+   ],
+   "effect": {
+    "zh": "回復 8 點理智。",
+    "en": "Restore 8 SP."
+   }
+  },
+  {
+   "id": "A036",
+   "name": {
+    "zh": "冥想",
+    "en": "Meditation"
+   },
+   "type": "action",
+   "cost": 2,
+   "value": 2,
+   "icon": "🧘",
+   "fx": [
+    [
+     "heal",
+     2
+    ],
+    [
+     "shield",
+     2
+    ]
+   ],
+   "effect": {
+    "zh": "回復 2 點理智，獲得 2 點護盾（先擋傷害）。",
+    "en": "Restore 2 SP, gain 2 shield (blocks damage first)."
+   }
+  },
+  {
+   "id": "A037",
+   "name": {
+    "zh": "好消息",
+    "en": "Good News"
+   },
+   "type": "action",
+   "cost": 3,
+   "value": 4,
+   "icon": "📰",
+   "fx": [
+    [
+     "heal",
+     4
+    ],
+    [
+     "draw",
+     1
+    ]
+   ],
+   "effect": {
+    "zh": "回復 4 點理智，抽 1 張牌。",
+    "en": "Restore 4 SP, draw 1 card."
+   }
+  },
+  {
+   "id": "A038",
+   "name": {
+    "zh": "週末到了",
+    "en": "Weekend!"
+   },
+   "type": "action",
+   "cost": 5,
+   "value": 10,
+   "icon": "🎉",
+   "fx": [
+    [
+     "heal",
+     10
+    ]
+   ],
+   "effect": {
+    "zh": "回復 10 點理智。",
+    "en": "Restore 10 SP."
+   }
+  },
+  {
+   "id": "A039",
+   "name": {
+    "zh": "看喜劇",
+    "en": "Watch a Comedy"
+   },
+   "type": "action",
+   "cost": 2,
+   "value": 2,
+   "icon": "😆",
+   "fx": [
+    [
+     "heal",
+     2
+    ],
+    [
+     "regen",
+     1,
+     3
+    ]
+   ],
+   "effect": {
+    "zh": "回復 2 點理智，接下來 3 回合，你每回合回復 1 點理智。",
+    "en": "Restore 2 SP, for 3 turns you restore 1 SP each turn."
+   }
+  },
+  {
+   "id": "A040",
+   "name": {
+    "zh": "抱抱泰迪熊",
+    "en": "Teddy Hug"
+   },
+   "type": "action",
+   "cost": 1,
+   "value": 2,
+   "icon": "🧸",
+   "fx": [
+    [
+     "heal",
+     2
+    ]
+   ],
+   "hero": "jasper",
+   "effect": {
+    "zh": "回復 2 點理智。（Jasper 打出時數值 +1）",
+    "en": "Restore 2 SP. (+1 when Jasper plays it)"
+   }
+  },
+  {
+   "id": "A041",
+   "name": {
+    "zh": "列清單",
+    "en": "Make a List"
+   },
+   "type": "action",
+   "cost": 1,
+   "value": 2,
+   "icon": "📝",
+   "fx": [
+    [
+     "draw",
+     2
+    ]
+   ],
+   "hero": "erin",
+   "effect": {
+    "zh": "抽 2 張牌。（Erin 打出時數值 +1）",
+    "en": "Draw 2 cards. (+1 when Erin plays it)"
+   }
+  },
+  {
+   "id": "A042",
+   "name": {
+    "zh": "喝咖啡",
+    "en": "Coffee"
+   },
+   "type": "action",
+   "cost": 0,
+   "value": 2,
+   "icon": "☕",
+   "fx": [
+    [
+     "energy",
+     2
+    ],
+    [
+     "self",
+     1
+    ]
+   ],
+   "hero": "jeff",
+   "effect": {
+    "zh": "獲得 2 點能量，你自己失去 1 點理智。（Jeff 打出時數值 +1）",
+    "en": "Gain 2 energy, you lose 1 SP. (+1 when Jeff plays it)"
+   }
+  },
+  {
+   "id": "A043",
+   "name": {
+    "zh": "早起",
+    "en": "Early Bird"
+   },
+   "type": "action",
+   "cost": 2,
+   "value": 2,
+   "icon": "🌅",
+   "fx": [
+    [
+     "draw",
+     2
+    ],
+    [
+     "energy",
+     1
+    ]
+   ],
+   "effect": {
+    "zh": "抽 2 張牌，獲得 1 點能量。",
+    "en": "Draw 2 cards, gain 1 energy."
+   }
+  },
+  {
+   "id": "A044",
+   "name": {
+    "zh": "大計畫",
+    "en": "Big Plan"
+   },
+   "type": "action",
+   "cost": 3,
+   "value": 3,
+   "icon": "🗺️",
+   "fx": [
+    [
+     "draw",
+     3
+    ]
+   ],
+   "effect": {
+    "zh": "抽 3 張牌。",
+    "en": "Draw 3 cards."
+   }
+  },
+  {
+   "id": "A045",
+   "name": {
+    "zh": "腦力激盪",
+    "en": "Brainstorm"
+   },
+   "type": "action",
+   "cost": 2,
+   "value": 2,
+   "icon": "💡",
+   "fx": [
+    [
+     "draw",
+     2
+    ]
+   ],
+   "effect": {
+    "zh": "抽 2 張牌。",
+    "en": "Draw 2 cards."
+   }
+  },
+  {
+   "id": "A046",
+   "name": {
+    "zh": "加油打氣",
+    "en": "Pep Talk"
+   },
+   "type": "action",
+   "cost": 1,
+   "value": 2,
+   "icon": "📣",
+   "fx": [
+    [
+     "energy",
+     2
+    ]
+   ],
+   "effect": {
+    "zh": "獲得 2 點能量。",
+    "en": "Gain 2 energy."
+   }
+  },
+  {
+   "id": "A047",
+   "name": {
+    "zh": "抄捷徑",
+    "en": "Shortcut"
+   },
+   "type": "action",
+   "cost": 1,
+   "value": 1,
+   "icon": "🛤️",
+   "fx": [
+    [
+     "draw",
+     1
+    ],
+    [
+     "energy",
+     1
+    ]
+   ],
+   "effect": {
+    "zh": "抽 1 張牌，獲得 1 點能量。",
+    "en": "Draw 1 card, gain 1 energy."
+   }
+  },
+  {
+   "id": "A048",
+   "name": {
+    "zh": "沙發縫找零錢",
+    "en": "Couch Coins"
+   },
+   "type": "action",
+   "cost": 0,
+   "value": 1,
+   "icon": "🪙",
+   "fx": [
+    [
+     "draw",
+     1
+    ]
+   ],
+   "effect": {
+    "zh": "抽 1 張牌。",
+    "en": "Draw 1 card."
+   }
+  },
+  {
+   "id": "A049",
+   "name": {
+    "zh": "上網查",
+    "en": "Look It Up"
+   },
+   "type": "action",
+   "cost": 2,
+   "value": 2,
+   "icon": "🔍",
+   "fx": [
+    [
+     "draw",
+     2
+    ]
+   ],
+   "hero": "josh",
+   "effect": {
+    "zh": "抽 2 張牌。（Josh 打出時數值 +1）",
+    "en": "Draw 2 cards. (+1 when Josh plays it)"
+   }
+  },
+  {
+   "id": "A050",
+   "name": {
+    "zh": "第二杯咖啡",
+    "en": "Second Coffee"
+   },
+   "type": "action",
+   "cost": 1,
+   "value": 3,
+   "icon": "☕",
+   "fx": [
+    [
+     "energy",
+     3
+    ],
+    [
+     "self",
+     2
+    ]
+   ],
+   "hero": "jeff",
+   "effect": {
+    "zh": "獲得 3 點能量，你自己失去 2 點理智。（Jeff 打出時數值 +1）",
+    "en": "Gain 3 energy, you lose 2 SP. (+1 when Jeff plays it)"
+   }
+  },
+  {
+   "id": "A051",
+   "name": {
+    "zh": "躲起來",
+    "en": "Hide"
+   },
+   "type": "action",
+   "cost": 1,
+   "value": 3,
+   "icon": "🙈",
+   "fx": [
+    [
+     "shield",
+     3
+    ]
+   ],
+   "effect": {
+    "zh": "獲得 3 點護盾（先擋傷害）。",
+    "en": "Gain 3 shield (blocks damage first)."
+   }
+  },
+  {
+   "id": "A052",
+   "name": {
+    "zh": "把門關上",
+    "en": "Close the Door"
+   },
+   "type": "action",
+   "cost": 2,
+   "value": 4,
+   "icon": "🚪",
+   "fx": [
+    [
+     "shield",
+     4
+    ]
+   ],
+   "effect": {
+    "zh": "獲得 4 點護盾（先擋傷害）。",
+    "en": "Gain 4 shield (blocks damage first)."
+   }
+  },
+  {
+   "id": "A053",
+   "name": {
+    "zh": "冷靜一下",
+    "en": "Time-Out"
+   },
+   "type": "action",
+   "cost": 3,
+   "value": 2,
+   "icon": "⏸️",
+   "fx": [
+    [
+     "sap",
+     2
+    ],
+    [
+     "dmg",
+     1
+    ]
+   ],
+   "effect": {
+    "zh": "對手下回合少 2 點能量，對手失去 1 點理智。",
+    "en": "The opponent has 2 less energy next turn, Opponent loses 1 SP."
+   }
+  },
+  {
+   "id": "A054",
+   "name": {
+    "zh": "沒收！",
+    "en": "Confiscated!"
+   },
+   "type": "action",
+   "cost": 3,
+   "value": 1,
+   "icon": "🚫",
+   "fx": [
+    [
+     "clearItem"
+    ],
+    [
+     "dmg",
+     1
+    ]
+   ],
+   "effect": {
+    "zh": "拿走對手一件道具，對手失去 1 點理智。",
+    "en": "Take away one of the opponent's items, Opponent loses 1 SP."
+   }
+  },
+  {
+   "id": "A055",
+   "name": {
+    "zh": "該睡覺了",
+    "en": "Bedtime!"
+   },
+   "type": "action",
+   "cost": 3,
+   "value": 1,
+   "icon": "🛌",
+   "fx": [
+    [
+     "clearAlly"
+    ],
+    [
+     "draw",
+     1
+    ]
+   ],
+   "effect": {
+    "zh": "送走對手一位角色，抽 1 張牌。",
+    "en": "Send away one of the opponent's characters, draw 1 card."
+   }
+  },
+  {
+   "id": "A056",
+   "name": {
+    "zh": "轉台",
+    "en": "Change the Channel"
+   },
+   "type": "action",
+   "cost": 2,
+   "value": 1,
+   "icon": "📡",
+   "fx": [
+    [
+     "clearLoc"
+    ],
+    [
+     "draw",
+     1
+    ]
+   ],
+   "effect": {
+    "zh": "取消目前的場地，抽 1 張牌。",
+    "en": "Clear the current location, draw 1 card."
+   }
+  },
+  {
+   "id": "A057",
+   "name": {
+    "zh": "偷看",
+    "en": "Sneak Peek"
+   },
+   "type": "action",
+   "cost": 1,
+   "value": 1,
+   "icon": "👀",
+   "fx": [
+    [
+     "steal",
+     1
+    ]
+   ],
+   "effect": {
+    "zh": "從對手手牌偷走 1 張。",
+    "en": "Steal 1 card from the opponent's hand."
+   }
+  },
+  {
+   "id": "A058",
+   "name": {
+    "zh": "交換",
+    "en": "Trade"
+   },
+   "type": "action",
+   "cost": 2,
+   "value": 1,
+   "icon": "🔄",
+   "fx": [
+    [
+     "steal",
+     1
+    ],
+    [
+     "draw",
+     1
+    ]
+   ],
+   "effect": {
+    "zh": "從對手手牌偷走 1 張，抽 1 張牌。",
+    "en": "Steal 1 card from the opponent's hand, draw 1 card."
+   }
+  },
+  {
+   "id": "A059",
+   "name": {
+    "zh": "都是你的錯",
+    "en": "Blame Game"
+   },
+   "type": "action",
+   "cost": 2,
+   "value": 0,
+   "icon": "👉",
+   "fx": [
+    [
+     "reflect"
+    ]
+   ],
+   "effect": {
+    "zh": "下一次受到的傷害反彈給對手。",
+    "en": "The next damage you take bounces back to the opponent."
+   }
+  },
+  {
+   "id": "A060",
+   "name": {
+    "zh": "假裝沒聽到",
+    "en": "Pretend Not to Hear"
+   },
+   "type": "action",
+   "cost": 1,
+   "value": 2,
+   "icon": "🙉",
+   "fx": [
+    [
+     "shield",
+     2
+    ]
+   ],
+   "effect": {
+    "zh": "獲得 2 點護盾（先擋傷害）。",
+    "en": "Gain 2 shield (blocks damage first)."
+   }
+  },
+  {
+   "id": "A061",
+   "name": {
+    "zh": "大吵一架",
+    "en": "Big Argument"
+   },
+   "type": "action",
+   "cost": 2,
+   "value": 5,
+   "icon": "💢",
+   "fx": [
+    [
+     "dmg",
+     5
+    ],
+    [
+     "self",
+     2
+    ]
+   ],
+   "effect": {
+    "zh": "對手失去 5 點理智，你自己失去 2 點理智。",
+    "en": "Opponent loses 5 SP, you lose 2 SP."
+   }
+  },
+  {
+   "id": "A062",
+   "name": {
+    "zh": "分心",
+    "en": "Distraction"
+   },
+   "type": "action",
+   "cost": 2,
+   "value": 2,
+   "icon": "🦋",
+   "fx": [
+    [
+     "discard",
+     2
+    ]
+   ],
+   "effect": {
+    "zh": "對手隨機棄掉 2 張手牌。",
+    "en": "Opponent discards 2 random cards."
+   }
+  },
+  {
+   "id": "A063",
+   "name": {
+    "zh": "撒嬌",
+    "en": "Puppy Eyes"
+   },
+   "type": "action",
+   "cost": 2,
+   "value": 1,
+   "icon": "🥺",
+   "fx": [
+    [
+     "steal",
+     1
+    ],
+    [
+     "heal",
+     1
+    ]
+   ],
+   "hero": "jasper",
+   "effect": {
+    "zh": "從對手手牌偷走 1 張，回復 1 點理智。（Jasper 打出時數值 +1）",
+    "en": "Steal 1 card from the opponent's hand, restore 1 SP. (+1 when Jasper plays it)"
+   }
+  },
+  {
+   "id": "A064",
+   "name": {
+    "zh": "家規",
+    "en": "House Rules"
+   },
+   "type": "action",
+   "cost": 4,
+   "value": 2,
+   "icon": "📜",
+   "fx": [
+    [
+     "tax",
+     2
+    ],
+    [
+     "shield",
+     2
+    ]
+   ],
+   "hero": "erin",
+   "effect": {
+    "zh": "對手下一張牌多花 2 點能量，獲得 2 點護盾（先擋傷害）。（Erin 打出時數值 +1）",
+    "en": "The opponent's next card costs 2 more, gain 2 shield (blocks damage first). (+1 when Erin plays it)"
+   }
+  },
+  {
+   "id": "A065",
+   "name": {
+    "zh": "網路斷了",
+    "en": "Wi-Fi Down"
+   },
+   "type": "action",
+   "cost": 4,
+   "value": 3,
+   "icon": "📶",
+   "fx": [
+    [
+     "discard",
+     3
+    ]
+   ],
+   "hero": "josh",
+   "effect": {
+    "zh": "對手隨機棄掉 3 張手牌。（Josh 打出時數值 +1）",
+    "en": "Opponent discards 3 random cards. (+1 when Josh plays it)"
+   }
+  },
+  {
+   "id": "A066",
+   "name": {
+    "zh": "全家出遊",
+    "en": "Family Trip"
+   },
+   "type": "action",
+   "cost": 5,
+   "value": 2,
+   "icon": "🚗",
+   "fx": [
+    [
+     "draw",
+     2
+    ],
+    [
+     "heal",
+     5
+    ]
+   ],
+   "effect": {
+    "zh": "抽 2 張牌，回復 5 點理智。",
+    "en": "Draw 2 cards, restore 5 SP."
+   }
+  },
+  {
+   "id": "A067",
+   "name": {
+    "zh": "理智線斷掉",
+    "en": "Total Meltdown"
+   },
+   "type": "action",
+   "cost": 6,
+   "value": 8,
+   "icon": "🌋",
+   "fx": [
+    [
+     "dmg",
+     8
+    ],
+    [
+     "discard",
+     1
+    ]
+   ],
+   "effect": {
+    "zh": "對手失去 8 點理智，對手隨機棄掉 1 張手牌。",
+    "en": "Opponent loses 8 SP, opponent discards 1 random card."
+   }
+  },
+  {
+   "id": "A068",
+   "name": {
+    "zh": "和好",
+    "en": "Make Up"
+   },
+   "type": "action",
+   "cost": 3,
+   "value": 6,
+   "icon": "🤝",
+   "fx": [
+    [
+     "heal",
+     6
+    ],
+    [
+     "draw",
+     1
+    ]
+   ],
+   "effect": {
+    "zh": "回復 6 點理智，抽 1 張牌。",
+    "en": "Restore 6 SP, draw 1 card."
+   }
+  },
+  {
+   "id": "A069",
+   "name": {
+    "zh": "偷吃零食",
+    "en": "Snack Raid"
+   },
+   "type": "action",
+   "cost": 2,
+   "value": 2,
+   "icon": "🍫",
+   "fx": [
+    [
+     "heal",
+     2
+    ],
+    [
+     "draw",
+     1
+    ]
+   ],
+   "effect": {
+    "zh": "回復 2 點理智，抽 1 張牌。",
+    "en": "Restore 2 SP, draw 1 card."
+   }
+  },
+  {
+   "id": "A070",
+   "name": {
+    "zh": "最後手段",
+    "en": "Last Resort"
+   },
+   "type": "action",
+   "cost": 7,
+   "value": 12,
+   "icon": "💥",
+   "fx": [
+    [
+     "dmg",
+     12
+    ]
+   ],
+   "effect": {
+    "zh": "對手失去 12 點理智。",
+    "en": "Opponent loses 12 SP."
+   }
+  },
+  {
+   "id": "I001",
+   "name": {
+    "zh": "降噪耳機",
+    "en": "Noise-Cancelling Headphones"
+   },
+   "type": "item",
+   "cost": 3,
+   "value": 3,
+   "icon": "🎧",
+   "fx": [],
+   "tick": [],
+   "turns": 3,
+   "mods": {
+    "armor": 1
+   },
+   "effect": {
+    "zh": "使用 3 回合：你受到的傷害 -1。",
+    "en": "Lasts 3 turns: damage you take -1."
+   }
+  },
+  {
+   "id": "I002",
+   "name": {
+    "zh": "軟綿綿毯子",
+    "en": "Fluffy Blanket"
+   },
+   "type": "item",
+   "cost": 3,
+   "value": 3,
+   "icon": "🛋️",
+   "fx": [],
+   "tick": [
+    [
+     "heal",
+     2
+    ]
+   ],
+   "turns": 3,
+   "effect": {
+    "zh": "使用 3 回合：每回合開始時回復 2 點理智。",
+    "en": "Lasts 3 turns: at the start of each of your turns, restore 2 SP."
+   }
+  },
+  {
+   "id": "I003",
+   "name": {
+    "zh": "咖啡機",
+    "en": "Coffee Maker"
+   },
+   "type": "item",
+   "cost": 3,
+   "value": 3,
+   "icon": "☕",
+   "fx": [],
+   "tick": [
+    [
+     "energy",
+     1
+    ]
+   ],
+   "turns": 3,
+   "hero": "jeff",
+   "effect": {
+    "zh": "使用 3 回合：每回合開始時獲得 1 點能量。（Jeff 打出時數值 +1）",
+    "en": "Lasts 3 turns: at the start of each of your turns, gain 1 energy. (+1 when Jeff plays it)"
+   }
+  },
+  {
+   "id": "I004",
+   "name": {
+    "zh": "記事本",
+    "en": "Planner"
+   },
+   "type": "item",
+   "cost": 2,
+   "value": 3,
+   "icon": "📒",
+   "fx": [],
+   "tick": [
+    [
+     "draw",
+     1
+    ]
+   ],
+   "turns": 3,
+   "hero": "erin",
+   "effect": {
+    "zh": "使用 3 回合：每回合開始時抽 1 張牌。（Erin 打出時數值 +1）",
+    "en": "Lasts 3 turns: at the start of each of your turns, draw 1 card. (+1 when Erin plays it)"
+   }
+  },
+  {
+   "id": "I005",
+   "name": {
+    "zh": "遙控器",
+    "en": "The Remote"
+   },
+   "type": "item",
+   "cost": 2,
+   "value": 3,
+   "icon": "📱",
+   "fx": [],
+   "tick": [],
+   "turns": 3,
+   "mods": {
+    "boost": 1
+   },
+   "effect": {
+    "zh": "使用 3 回合：你的傷害 +1。",
+    "en": "Lasts 3 turns: your damage +1."
+   }
+  },
+  {
+   "id": "I006",
+   "name": {
+    "zh": "樂高盒",
+    "en": "Lego Box"
+   },
+   "type": "item",
+   "cost": 2,
+   "value": 3,
+   "icon": "🧱",
+   "fx": [],
+   "tick": [],
+   "turns": 3,
+   "mods": {
+    "thorns": 1
+   },
+   "hero": "jasper",
+   "effect": {
+    "zh": "使用 3 回合：被攻擊時對手失去 1 點理智。（Jasper 打出時數值 +1）",
+    "en": "Lasts 3 turns: when you are hit the opponent loses 1 SP. (+1 when Jasper plays it)"
+   }
+  },
+  {
+   "id": "I007",
+   "name": {
+    "zh": "遊戲機",
+    "en": "Game Console"
+   },
+   "type": "item",
+   "cost": 4,
+   "value": 3,
+   "icon": "🎮",
+   "fx": [],
+   "tick": [
+    [
+     "draw",
+     1
+    ],
+    [
+     "energy",
+     1
+    ]
+   ],
+   "turns": 3,
+   "hero": "josh",
+   "effect": {
+    "zh": "使用 3 回合：每回合開始時抽 1 張牌，獲得 1 點能量。（Josh 打出時數值 +1）",
+    "en": "Lasts 3 turns: at the start of each of your turns, draw 1 card, gain 1 energy. (+1 when Josh plays it)"
+   }
+  },
+  {
+   "id": "I008",
+   "name": {
+    "zh": "泰迪熊",
+    "en": "Teddy Bear"
+   },
+   "type": "item",
+   "cost": 2,
+   "value": 3,
+   "icon": "🧸",
+   "fx": [],
+   "tick": [
+    [
+     "heal",
+     2
+    ]
+   ],
+   "turns": 3,
+   "hero": "jasper",
+   "effect": {
+    "zh": "使用 3 回合：每回合開始時回復 2 點理智。（Jasper 打出時數值 +1）",
+    "en": "Lasts 3 turns: at the start of each of your turns, restore 2 SP. (+1 when Jasper plays it)"
+   }
+  },
+  {
+   "id": "I009",
+   "name": {
+    "zh": "保溫杯",
+    "en": "Thermos"
+   },
+   "type": "item",
+   "cost": 1,
+   "value": 4,
+   "icon": "🥤",
+   "fx": [],
+   "tick": [
+    [
+     "heal",
+     1
+    ]
+   ],
+   "turns": 4,
+   "effect": {
+    "zh": "使用 4 回合：每回合開始時回復 1 點理智。",
+    "en": "Lasts 4 turns: at the start of each of your turns, restore 1 SP."
+   }
+  },
+  {
+   "id": "I010",
+   "name": {
+    "zh": "平板電腦",
+    "en": "Tablet"
+   },
+   "type": "item",
+   "cost": 3,
+   "value": 2,
+   "icon": "💻",
+   "fx": [
+    [
+     "draw",
+     1
+    ]
+   ],
+   "tick": [
+    [
+     "draw",
+     1
+    ]
+   ],
+   "turns": 2,
+   "effect": {
+    "zh": "使用 2 回合：放下時抽 1 張牌；每回合開始時抽 1 張牌。",
+    "en": "Lasts 2 turns: when played, draw 1 card; at the start of each of your turns, draw 1 card."
+   }
+  },
+  {
+   "id": "I011",
+   "name": {
+    "zh": "零食櫃",
+    "en": "Snack Cabinet"
+   },
+   "type": "item",
+   "cost": 2,
+   "value": 5,
+   "icon": "🍪",
+   "fx": [],
+   "tick": [
+    [
+     "heal",
+     1
+    ]
+   ],
+   "turns": 5,
+   "effect": {
+    "zh": "使用 5 回合：每回合開始時回復 1 點理智。",
+    "en": "Lasts 5 turns: at the start of each of your turns, restore 1 SP."
+   }
+  },
+  {
+   "id": "I012",
+   "name": {
+    "zh": "溜溜球",
+    "en": "Yo-Yo"
+   },
+   "type": "item",
+   "cost": 1,
+   "value": 2,
+   "icon": "🪀",
+   "fx": [
+    [
+     "dmg",
+     1
+    ]
+   ],
+   "tick": [
+    [
+     "dmg",
+     1
+    ]
+   ],
+   "turns": 2,
+   "effect": {
+    "zh": "使用 2 回合：放下時對手失去 1 點理智；每回合開始時對手失去 1 點理智。",
+    "en": "Lasts 2 turns: when played, Opponent loses 1 SP; at the start of each of your turns, Opponent loses 1 SP."
+   }
+  },
+  {
+   "id": "I013",
+   "name": {
+    "zh": "手電筒",
+    "en": "Flashlight"
+   },
+   "type": "item",
+   "cost": 1,
+   "value": 3,
+   "icon": "🔦",
+   "fx": [],
+   "tick": [],
+   "turns": 3,
+   "mods": {
+    "armor": 1
+   },
+   "effect": {
+    "zh": "使用 3 回合：你受到的傷害 -1。",
+    "en": "Lasts 3 turns: damage you take -1."
+   }
+  },
+  {
+   "id": "I014",
+   "name": {
+    "zh": "安全帽",
+    "en": "Helmet"
+   },
+   "type": "item",
+   "cost": 2,
+   "value": 4,
+   "icon": "⛑️",
+   "fx": [
+    [
+     "shield",
+     2
+    ]
+   ],
+   "tick": [],
+   "turns": 4,
+   "mods": {
+    "armor": 1
+   },
+   "effect": {
+    "zh": "使用 4 回合：放下時獲得 2 點護盾（先擋傷害）；你受到的傷害 -1。",
+    "en": "Lasts 4 turns: when played, gain 2 shield (blocks damage first); damage you take -1."
+   }
+  },
+  {
+   "id": "I015",
+   "name": {
+    "zh": "書包",
+    "en": "School Bag"
+   },
+   "type": "item",
+   "cost": 2,
+   "value": 3,
+   "icon": "🎒",
+   "fx": [
+    [
+     "draw",
+     1
+    ]
+   ],
+   "tick": [],
+   "turns": 3,
+   "mods": {
+    "armor": 1
+   },
+   "hero": "josh",
+   "effect": {
+    "zh": "使用 3 回合：放下時抽 1 張牌；你受到的傷害 -1。（Josh 打出時數值 +1）",
+    "en": "Lasts 3 turns: when played, draw 1 card; damage you take -1. (+1 when Josh plays it)"
+   }
+  },
+  {
+   "id": "I016",
+   "name": {
+    "zh": "果汁盒",
+    "en": "Juice Box"
+   },
+   "type": "item",
+   "cost": 1,
+   "value": 2,
+   "icon": "🧃",
+   "fx": [
+    [
+     "heal",
+     2
+    ]
+   ],
+   "tick": [
+    [
+     "heal",
+     1
+    ]
+   ],
+   "turns": 2,
+   "effect": {
+    "zh": "使用 2 回合：放下時回復 2 點理智；每回合開始時回復 1 點理智。",
+    "en": "Lasts 2 turns: when played, restore 2 SP; at the start of each of your turns, restore 1 SP."
+   }
+  },
+  {
+   "id": "I017",
+   "name": {
+    "zh": "小喇叭",
+    "en": "Toy Trumpet"
+   },
+   "type": "item",
+   "cost": 3,
+   "value": 3,
+   "icon": "🎺",
+   "fx": [],
+   "tick": [
+    [
+     "dmg",
+     2
+    ]
+   ],
+   "turns": 3,
+   "effect": {
+    "zh": "使用 3 回合：每回合開始時對手失去 2 點理智。",
+    "en": "Lasts 3 turns: at the start of each of your turns, Opponent loses 2 SP."
+   }
+  },
+  {
+   "id": "I018",
+   "name": {
+    "zh": "玩具鼓",
+    "en": "Toy Drum"
+   },
+   "type": "item",
+   "cost": 2,
+   "value": 3,
+   "icon": "🥁",
+   "fx": [],
+   "tick": [
+    [
+     "dmg",
+     1
+    ]
+   ],
+   "turns": 3,
+   "hero": "jasper",
+   "effect": {
+    "zh": "使用 3 回合：每回合開始時對手失去 1 點理智。（Jasper 打出時數值 +1）",
+    "en": "Lasts 3 turns: at the start of each of your turns, Opponent loses 1 SP. (+1 when Jasper plays it)"
+   }
+  },
+  {
+   "id": "I019",
+   "name": {
+    "zh": "磁鐵",
+    "en": "Magnet"
+   },
+   "type": "item",
+   "cost": 3,
+   "value": 2,
+   "icon": "🧲",
+   "fx": [
+    [
+     "steal",
+     1
+    ]
+   ],
+   "tick": [
+    [
+     "steal",
+     1
+    ]
+   ],
+   "turns": 2,
+   "effect": {
+    "zh": "使用 2 回合：放下時從對手手牌偷走 1 張；每回合開始時從對手手牌偷走 1 張。",
+    "en": "Lasts 2 turns: when played, steal 1 card from the opponent's hand; at the start of each of your turns, steal 1 card from the opponent's hand."
+   }
+  },
+  {
+   "id": "I020",
+   "name": {
+    "zh": "備用鑰匙",
+    "en": "Spare Key"
+   },
+   "type": "item",
+   "cost": 1,
+   "value": 3,
+   "icon": "🗝️",
+   "fx": [
+    [
+     "shield",
+     2
+    ]
+   ],
+   "tick": [],
+   "turns": 3,
+   "effect": {
+    "zh": "使用 3 回合：放下時獲得 2 點護盾（先擋傷害）。",
+    "en": "Lasts 3 turns: when played, gain 2 shield (blocks damage first)."
+   }
+  },
+  {
+   "id": "I021",
+   "name": {
+    "zh": "行動電源",
+    "en": "Power Bank"
+   },
+   "type": "item",
+   "cost": 2,
+   "value": 3,
+   "icon": "🔋",
+   "fx": [],
+   "tick": [
+    [
+     "energy",
+     1
+    ]
+   ],
+   "turns": 3,
+   "effect": {
+    "zh": "使用 3 回合：每回合開始時獲得 1 點能量。",
+    "en": "Lasts 3 turns: at the start of each of your turns, gain 1 energy."
+   }
+  },
+  {
+   "id": "I022",
+   "name": {
+    "zh": "故事書",
+    "en": "Storybook"
+   },
+   "type": "item",
+   "cost": 2,
+   "value": 3,
+   "icon": "📖",
+   "fx": [],
+   "tick": [
+    [
+     "heal",
+     1
+    ],
+    [
+     "draw",
+     1
+    ]
+   ],
+   "turns": 3,
+   "hero": "erin",
+   "effect": {
+    "zh": "使用 3 回合：每回合開始時回復 1 點理智，抽 1 張牌。（Erin 打出時數值 +1）",
+    "en": "Lasts 3 turns: at the start of each of your turns, restore 1 SP, draw 1 card. (+1 when Erin plays it)"
+   }
+  },
+  {
+   "id": "I023",
+   "name": {
+    "zh": "風箏",
+    "en": "Kite"
+   },
+   "type": "item",
+   "cost": 2,
+   "value": 2,
+   "icon": "🪁",
+   "fx": [
+    [
+     "heal",
+     3
+    ]
+   ],
+   "tick": [],
+   "turns": 2,
+   "effect": {
+    "zh": "使用 2 回合：放下時回復 3 點理智。",
+    "en": "Lasts 2 turns: when played, restore 3 SP."
+   }
+  },
+  {
+   "id": "I024",
+   "name": {
+    "zh": "滑板",
+    "en": "Skateboard"
+   },
+   "type": "item",
+   "cost": 3,
+   "value": 3,
+   "icon": "🛹",
+   "fx": [],
+   "tick": [],
+   "turns": 3,
+   "mods": {
+    "boost": 1,
+    "armor": 1
+   },
+   "hero": "josh",
+   "effect": {
+    "zh": "使用 3 回合：你的傷害 +1，你受到的傷害 -1。（Josh 打出時數值 +1）",
+    "en": "Lasts 3 turns: your damage +1, damage you take -1. (+1 when Josh plays it)"
+   }
+  },
+  {
+   "id": "I025",
+   "name": {
+    "zh": "滅火器",
+    "en": "Fire Extinguisher"
+   },
+   "type": "item",
+   "cost": 3,
+   "value": 3,
+   "icon": "🧯",
+   "fx": [
+    [
+     "shield",
+     3
+    ]
+   ],
+   "tick": [],
+   "turns": 3,
+   "mods": {
+    "armor": 1
+   },
+   "effect": {
+    "zh": "使用 3 回合：放下時獲得 3 點護盾（先擋傷害）；你受到的傷害 -1。",
+    "en": "Lasts 3 turns: when played, gain 3 shield (blocks damage first); damage you take -1."
+   }
+  },
+  {
+   "id": "I026",
+   "name": {
+    "zh": "平底鍋",
+    "en": "Frying Pan"
+   },
+   "type": "item",
+   "cost": 3,
+   "value": 3,
+   "icon": "🍳",
+   "fx": [],
+   "tick": [],
+   "turns": 3,
+   "mods": {
+    "boost": 2
+   },
+   "hero": "erin",
+   "effect": {
+    "zh": "使用 3 回合：你的傷害 +2。（Erin 打出時數值 +1）",
+    "en": "Lasts 3 turns: your damage +2. (+1 when Erin plays it)"
+   }
+  },
+  {
+   "id": "I027",
+   "name": {
+    "zh": "工具箱",
+    "en": "Toolbox"
+   },
+   "type": "item",
+   "cost": 3,
+   "value": 3,
+   "icon": "🔧",
+   "fx": [
+    [
+     "draw",
+     1
+    ]
+   ],
+   "tick": [],
+   "turns": 3,
+   "mods": {
+    "boost": 1
+   },
+   "hero": "jeff",
+   "effect": {
+    "zh": "使用 3 回合：放下時抽 1 張牌；你的傷害 +1。（Jeff 打出時數值 +1）",
+    "en": "Lasts 3 turns: when played, draw 1 card; your damage +1. (+1 when Jeff plays it)"
+   }
+  },
+  {
+   "id": "I028",
+   "name": {
+    "zh": "氣球",
+    "en": "Balloon"
+   },
+   "type": "item",
+   "cost": 1,
+   "value": 2,
+   "icon": "🎈",
+   "fx": [],
+   "tick": [
+    [
+     "heal",
+     1
+    ]
+   ],
+   "turns": 2,
+   "mods": {
+    "thorns": 1
+   },
+   "effect": {
+    "zh": "使用 2 回合：每回合開始時回復 1 點理智；被攻擊時對手失去 1 點理智。",
+    "en": "Lasts 2 turns: at the start of each of your turns, restore 1 SP; when you are hit the opponent loses 1 SP."
+   }
+  },
+  {
+   "id": "I029",
+   "name": {
+    "zh": "拼圖",
+    "en": "Jigsaw Puzzle"
+   },
+   "type": "item",
+   "cost": 2,
+   "value": 3,
+   "icon": "🧩",
+   "fx": [],
+   "tick": [
+    [
+     "heal",
+     1
+    ],
+    [
+     "shield",
+     1
+    ]
+   ],
+   "turns": 3,
+   "effect": {
+    "zh": "使用 3 回合：每回合開始時回復 1 點理智，獲得 1 點護盾（先擋傷害）。",
+    "en": "Lasts 3 turns: at the start of each of your turns, restore 1 SP, gain 1 shield (blocks damage first)."
+   }
+  },
+  {
+   "id": "I030",
+   "name": {
+    "zh": "桌遊",
+    "en": "Board Game"
+   },
+   "type": "item",
+   "cost": 3,
+   "value": 3,
+   "icon": "🎲",
+   "fx": [],
+   "tick": [
+    [
+     "draw",
+     1
+    ],
+    [
+     "heal",
+     1
+    ]
+   ],
+   "turns": 3,
+   "effect": {
+    "zh": "使用 3 回合：每回合開始時抽 1 張牌，回復 1 點理智。",
+    "en": "Lasts 3 turns: at the start of each of your turns, draw 1 card, restore 1 SP."
+   }
+  },
+  {
+   "id": "I031",
+   "name": {
+    "zh": "電動牙刷",
+    "en": "Electric Toothbrush"
+   },
+   "type": "item",
+   "cost": 1,
+   "value": 3,
+   "icon": "🪥",
+   "fx": [],
+   "tick": [
+    [
+     "dmg",
+     1
+    ]
+   ],
+   "turns": 3,
+   "effect": {
+    "zh": "使用 3 回合：每回合開始時對手失去 1 點理智。",
+    "en": "Lasts 3 turns: at the start of each of your turns, Opponent loses 1 SP."
+   }
+  },
+  {
+   "id": "I032",
+   "name": {
+    "zh": "彩色筆",
+    "en": "Markers"
+   },
+   "type": "item",
+   "cost": 2,
+   "value": 3,
+   "icon": "🎨",
+   "fx": [],
+   "tick": [
+    [
+     "mill",
+     1
+    ]
+   ],
+   "turns": 3,
+   "effect": {
+    "zh": "使用 3 回合：每回合開始時對手牌庫最上面 1 張被丟掉。",
+    "en": "Lasts 3 turns: at the start of each of your turns, the top 1 card of the opponent's deck are thrown away."
+   }
+  },
+  {
+   "id": "I033",
+   "name": {
+    "zh": "恐龍玩偶",
+    "en": "Toy Dinosaur"
+   },
+   "type": "item",
+   "cost": 3,
+   "value": 3,
+   "icon": "🦖",
+   "fx": [],
+   "tick": [
+    [
+     "dmg",
+     1
+    ]
+   ],
+   "turns": 3,
+   "mods": {
+    "thorns": 1
+   },
+   "hero": "jasper",
+   "effect": {
+    "zh": "使用 3 回合：每回合開始時對手失去 1 點理智；被攻擊時對手失去 1 點理智。（Jasper 打出時數值 +1）",
+    "en": "Lasts 3 turns: at the start of each of your turns, Opponent loses 1 SP; when you are hit the opponent loses 1 SP. (+1 when Jasper plays it)"
+   }
+  },
+  {
+   "id": "I034",
+   "name": {
+    "zh": "電吉他",
+    "en": "Electric Guitar"
+   },
+   "type": "item",
+   "cost": 4,
+   "value": 3,
+   "icon": "🎸",
+   "fx": [],
+   "tick": [
+    [
+     "dmg",
+     2
+    ],
+    [
+     "heal",
+     1
+    ]
+   ],
+   "turns": 3,
+   "hero": "jeff",
+   "effect": {
+    "zh": "使用 3 回合：每回合開始時對手失去 2 點理智，回復 1 點理智。（Jeff 打出時數值 +1）",
+    "en": "Lasts 3 turns: at the start of each of your turns, Opponent loses 2 SP, restore 1 SP. (+1 when Jeff plays it)"
+   }
+  },
+  {
+   "id": "I035",
+   "name": {
+    "zh": "洗衣籃",
+    "en": "Laundry Basket"
+   },
+   "type": "item",
+   "cost": 2,
+   "value": 3,
+   "icon": "🧺",
+   "fx": [
+    [
+     "shield",
+     3
+    ]
+   ],
+   "tick": [],
+   "turns": 3,
+   "effect": {
+    "zh": "使用 3 回合：放下時獲得 3 點護盾（先擋傷害）。",
+    "en": "Lasts 3 turns: when played, gain 3 shield (blocks damage first)."
+   }
+  },
+  {
+   "id": "I036",
+   "name": {
+    "zh": "盆栽",
+    "en": "Potted Plant"
+   },
+   "type": "item",
+   "cost": 1,
+   "value": 5,
+   "icon": "🪴",
+   "fx": [],
+   "tick": [
+    [
+     "heal",
+     1
+    ]
+   ],
+   "turns": 5,
+   "hero": "erin",
+   "effect": {
+    "zh": "使用 5 回合：每回合開始時回復 1 點理智。（Erin 打出時數值 +1）",
+    "en": "Lasts 5 turns: at the start of each of your turns, restore 1 SP. (+1 when Erin plays it)"
+   }
+  },
+  {
+   "id": "I037",
+   "name": {
+    "zh": "相機",
+    "en": "Camera"
+   },
+   "type": "item",
+   "cost": 2,
+   "value": 2,
+   "icon": "📷",
+   "fx": [
+    [
+     "draw",
+     2
+    ]
+   ],
+   "tick": [],
+   "turns": 2,
+   "effect": {
+    "zh": "使用 2 回合：放下時抽 2 張牌。",
+    "en": "Lasts 2 turns: when played, draw 2 cards."
+   }
+  },
+  {
+   "id": "I038",
+   "name": {
+    "zh": "搖桿",
+    "en": "Game Controller"
+   },
+   "type": "item",
+   "cost": 2,
+   "value": 3,
+   "icon": "🕹️",
+   "fx": [],
+   "tick": [
+    [
+     "energy",
+     1
+    ]
+   ],
+   "turns": 3,
+   "hero": "josh",
+   "effect": {
+    "zh": "使用 3 回合：每回合開始時獲得 1 點能量。（Josh 打出時數值 +1）",
+    "en": "Lasts 3 turns: at the start of each of your turns, gain 1 energy. (+1 when Josh plays it)"
+   }
+  },
+  {
+   "id": "I039",
+   "name": {
+    "zh": "神秘禮物",
+    "en": "Mystery Gift"
+   },
+   "type": "item",
+   "cost": 3,
+   "value": 1,
+   "icon": "🎁",
+   "fx": [
+    [
+     "draw",
+     2
+    ],
+    [
+     "heal",
+     2
+    ]
+   ],
+   "tick": [],
+   "turns": 1,
+   "effect": {
+    "zh": "使用 1 回合：放下時抽 2 張牌，回復 2 點理智。",
+    "en": "Lasts 1 turns: when played, draw 2 cards, restore 2 SP."
+   }
+  },
+  {
+   "id": "I040",
+   "name": {
+    "zh": "智慧手錶",
+    "en": "Smartwatch"
+   },
+   "type": "item",
+   "cost": 3,
+   "value": 3,
+   "icon": "⌚",
+   "fx": [],
+   "tick": [
+    [
+     "draw",
+     1
+    ]
+   ],
+   "turns": 3,
+   "mods": {
+    "armor": 1
+   },
+   "effect": {
+    "zh": "使用 3 回合：每回合開始時抽 1 張牌；你受到的傷害 -1。",
+    "en": "Lasts 3 turns: at the start of each of your turns, draw 1 card; damage you take -1."
+   }
+  },
+  {
+   "id": "I041",
+   "name": {
+    "zh": "紙箱盾牌",
+    "en": "Cardboard Shield"
+   },
+   "type": "item",
+   "cost": 2,
+   "value": 4,
+   "icon": "🛡️",
+   "fx": [
+    [
+     "shield",
+     3
+    ]
+   ],
+   "tick": [],
+   "turns": 4,
+   "effect": {
+    "zh": "使用 4 回合：放下時獲得 3 點護盾（先擋傷害）。",
+    "en": "Lasts 4 turns: when played, gain 3 shield (blocks damage first)."
+   }
+  },
+  {
+   "id": "I042",
+   "name": {
+    "zh": "水槍",
+    "en": "Water Gun"
+   },
+   "type": "item",
+   "cost": 2,
+   "value": 3,
+   "icon": "🔫",
+   "fx": [],
+   "tick": [
+    [
+     "dmg",
+     1
+    ]
+   ],
+   "turns": 3,
+   "mods": {
+    "boost": 1
+   },
+   "hero": "josh",
+   "effect": {
+    "zh": "使用 3 回合：每回合開始時對手失去 1 點理智；你的傷害 +1。（Josh 打出時數值 +1）",
+    "en": "Lasts 3 turns: at the start of each of your turns, Opponent loses 1 SP; your damage +1. (+1 when Josh plays it)"
+   }
+  },
+  {
+   "id": "I043",
+   "name": {
+    "zh": "暖暖手套",
+    "en": "Warm Mittens"
+   },
+   "type": "item",
+   "cost": 1,
+   "value": 3,
+   "icon": "🧤",
+   "fx": [],
+   "tick": [],
+   "turns": 3,
+   "mods": {
+    "armor": 1
+   },
+   "effect": {
+    "zh": "使用 3 回合：你受到的傷害 -1。",
+    "en": "Lasts 3 turns: damage you take -1."
+   }
+  },
+  {
+   "id": "I044",
+   "name": {
+    "zh": "蜂蜜罐",
+    "en": "Honey Jar"
+   },
+   "type": "item",
+   "cost": 2,
+   "value": 3,
+   "icon": "🍯",
+   "fx": [
+    [
+     "heal",
+     2
+    ]
+   ],
+   "tick": [
+    [
+     "heal",
+     1
+    ]
+   ],
+   "turns": 3,
+   "effect": {
+    "zh": "使用 3 回合：放下時回復 2 點理智；每回合開始時回復 1 點理智。",
+    "en": "Lasts 3 turns: when played, restore 2 SP; at the start of each of your turns, restore 1 SP."
+   }
+  },
+  {
+   "id": "I045",
+   "name": {
+    "zh": "腳踏車鈴",
+    "en": "Bike Bell"
+   },
+   "type": "item",
+   "cost": 1,
+   "value": 3,
+   "icon": "🔔",
+   "fx": [],
+   "tick": [
+    [
+     "dmg",
+     1
+    ]
+   ],
+   "turns": 3,
+   "effect": {
+    "zh": "使用 3 回合：每回合開始時對手失去 1 點理智。",
+    "en": "Lasts 3 turns: at the start of each of your turns, Opponent loses 1 SP."
+   }
+  },
+  {
+   "id": "I046",
+   "name": {
+    "zh": "音樂盒",
+    "en": "Music Box"
+   },
+   "type": "item",
+   "cost": 3,
+   "value": 4,
+   "icon": "🎵",
+   "fx": [],
+   "tick": [
+    [
+     "heal",
+     2
+    ]
+   ],
+   "turns": 4,
+   "effect": {
+    "zh": "使用 4 回合：每回合開始時回復 2 點理智。",
+    "en": "Lasts 4 turns: at the start of each of your turns, restore 2 SP."
+   }
+  },
+  {
+   "id": "I047",
+   "name": {
+    "zh": "紙箱城堡",
+    "en": "Cardboard Castle"
+   },
+   "type": "item",
+   "cost": 3,
+   "value": 3,
+   "icon": "📦",
+   "fx": [
+    [
+     "shield",
+     4
+    ]
+   ],
+   "tick": [],
+   "turns": 3,
+   "mods": {
+    "armor": 1
+   },
+   "hero": "jasper",
+   "effect": {
+    "zh": "使用 3 回合：放下時獲得 4 點護盾（先擋傷害）；你受到的傷害 -1。（Jasper 打出時數值 +1）",
+    "en": "Lasts 3 turns: when played, gain 4 shield (blocks damage first); damage you take -1. (+1 when Jasper plays it)"
+   }
+  },
+  {
+   "id": "I048",
+   "name": {
+    "zh": "科學實驗組",
+    "en": "Science Kit"
+   },
+   "type": "item",
+   "cost": 3,
+   "value": 2,
+   "icon": "🧪",
+   "fx": [
+    [
+     "draw",
+     1
+    ]
+   ],
+   "tick": [
+    [
+     "draw",
+     1
+    ],
+    [
+     "dmg",
+     1
+    ]
+   ],
+   "turns": 2,
+   "hero": "josh",
+   "effect": {
+    "zh": "使用 2 回合：放下時抽 1 張牌；每回合開始時抽 1 張牌，對手失去 1 點理智。（Josh 打出時數值 +1）",
+    "en": "Lasts 2 turns: when played, draw 1 card; at the start of each of your turns, draw 1 card, Opponent loses 1 SP. (+1 when Josh plays it)"
+   }
+  },
+  {
+   "id": "I049",
+   "name": {
+    "zh": "收納盒",
+    "en": "Storage Box"
+   },
+   "type": "item",
+   "cost": 2,
+   "value": 3,
+   "icon": "🗂️",
+   "fx": [],
+   "tick": [
+    [
+     "shield",
+     1
+    ],
+    [
+     "draw",
+     1
+    ]
+   ],
+   "turns": 3,
+   "hero": "erin",
+   "effect": {
+    "zh": "使用 3 回合：每回合開始時獲得 1 點護盾（先擋傷害），抽 1 張牌。（Erin 打出時數值 +1）",
+    "en": "Lasts 3 turns: at the start of each of your turns, gain 1 shield (blocks damage first), draw 1 card. (+1 when Erin plays it)"
+   }
+  },
+  {
+   "id": "I050",
+   "name": {
+    "zh": "按摩椅",
+    "en": "Massage Chair"
+   },
+   "type": "item",
+   "cost": 4,
+   "value": 3,
+   "icon": "🪑",
+   "fx": [],
+   "tick": [
+    [
+     "heal",
+     3
+    ]
+   ],
+   "turns": 3,
+   "hero": "jeff",
+   "effect": {
+    "zh": "使用 3 回合：每回合開始時回復 3 點理智。（Jeff 打出時數值 +1）",
+    "en": "Lasts 3 turns: at the start of each of your turns, restore 3 SP. (+1 when Jeff plays it)"
+   }
+  },
+  {
+   "id": "L001",
+   "name": {
+    "zh": "廚房",
+    "en": "Kitchen"
+   },
+   "type": "location",
+   "cost": 2,
+   "value": 1,
+   "icon": "🍳",
+   "fx": [],
+   "rule": {
+    "healMod": 1
+   },
+   "owner": [
+    [
+     "heal",
+     1
+    ]
+   ],
+   "effect": {
+    "zh": "大家：所有回復 +1；打出的人每回合開始時回復 1 點理智。打出新場地會取代舊的。",
+    "en": "Everyone: all healing +1; whoever played it, at the start of their turns: restore 1 SP. A new location replaces the old one."
+   }
+  },
+  {
+   "id": "L002",
+   "name": {
+    "zh": "客廳",
+    "en": "Living Room"
+   },
+   "type": "location",
+   "cost": 1,
+   "value": 1,
+   "icon": "🛋️",
+   "fx": [],
+   "rule": {
+    "drawExtra": 1
+   },
+   "owner": [],
+   "effect": {
+    "zh": "大家：抽牌階段多抽 1 張。打出新場地會取代舊的。",
+    "en": "Everyone: draw 1 more in the draw phase. A new location replaces the old one."
+   }
+  },
+  {
+   "id": "L003",
+   "name": {
+    "zh": "超市",
+    "en": "Supermarket"
+   },
+   "type": "location",
+   "cost": 2,
+   "value": 1,
+   "icon": "🛒",
+   "fx": [],
+   "rule": {
+    "costItem": -1
+   },
+   "owner": [],
+   "effect": {
+    "zh": "大家：道具卡費用 -1。打出新場地會取代舊的。",
+    "en": "Everyone: item cards cost -1. A new location replaces the old one."
+   }
+  },
+  {
+   "id": "L004",
+   "name": {
+    "zh": "公園",
+    "en": "Park"
+   },
+   "type": "location",
+   "cost": 2,
+   "value": 1,
+   "icon": "🌳",
+   "fx": [],
+   "rule": {
+    "startAll": [
+     [
+      "heal",
+      1
+     ]
+    ]
+   },
+   "owner": [
+    [
+     "heal",
+     1
+    ]
+   ],
+   "effect": {
+    "zh": "大家：每位玩家回合開始時回復 1 點理智；打出的人每回合開始時回復 1 點理智。打出新場地會取代舊的。",
+    "en": "Everyone: at the start of every player's turn, restore 1 SP; whoever played it, at the start of their turns: restore 1 SP. A new location replaces the old one."
+   }
+  },
+  {
+   "id": "L005",
+   "name": {
+    "zh": "學校",
+    "en": "School"
+   },
+   "type": "location",
+   "cost": 2,
+   "value": 1,
+   "icon": "🏫",
+   "fx": [],
+   "rule": {
+    "costAction": 1
+   },
+   "owner": [
+    [
+     "draw",
+     1
+    ]
+   ],
+   "effect": {
+    "zh": "大家：行動卡費用 +1；打出的人每回合開始時抽 1 張牌。打出新場地會取代舊的。",
+    "en": "Everyone: action cards cost +1; whoever played it, at the start of their turns: draw 1 card. A new location replaces the old one."
+   }
+  },
+  {
+   "id": "L006",
+   "name": {
+    "zh": "圖書館",
+    "en": "Library"
+   },
+   "type": "location",
+   "cost": 2,
+   "value": 1,
+   "icon": "📚",
+   "fx": [],
+   "rule": {
+    "dmgMod": -1
+   },
+   "owner": [
+    [
+     "draw",
+     1
+    ]
+   ],
+   "effect": {
+    "zh": "大家：所有傷害 -1；打出的人每回合開始時抽 1 張牌。打出新場地會取代舊的。",
+    "en": "Everyone: all damage -1; whoever played it, at the start of their turns: draw 1 card. A new location replaces the old one."
+   }
+  },
+  {
+   "id": "L007",
+   "name": {
+    "zh": "遊樂園",
+    "en": "Theme Park"
+   },
+   "type": "location",
+   "cost": 3,
+   "value": 1,
+   "icon": "🎢",
+   "fx": [],
+   "rule": {
+    "drawExtra": 1,
+    "startAll": [
+     [
+      "energy",
+      1
+     ]
+    ]
+   },
+   "owner": [],
+   "effect": {
+    "zh": "大家：抽牌階段多抽 1 張，每位玩家回合開始時獲得 1 點能量。打出新場地會取代舊的。",
+    "en": "Everyone: draw 1 more in the draw phase, at the start of every player's turn, gain 1 energy. A new location replaces the old one."
+   }
+  },
+  {
+   "id": "L008",
+   "name": {
+    "zh": "動物園",
+    "en": "Zoo"
+   },
+   "type": "location",
+   "cost": 2,
+   "value": 1,
+   "icon": "🦁",
+   "fx": [],
+   "rule": {
+    "costChar": -1
+   },
+   "owner": [
+    [
+     "heal",
+     1
+    ]
+   ],
+   "effect": {
+    "zh": "大家：角色卡費用 -1；打出的人每回合開始時回復 1 點理智。打出新場地會取代舊的。",
+    "en": "Everyone: character cards cost -1; whoever played it, at the start of their turns: restore 1 SP. A new location replaces the old one."
+   }
+  },
+  {
+   "id": "L009",
+   "name": {
+    "zh": "海邊",
+    "en": "Beach"
+   },
+   "type": "location",
+   "cost": 3,
+   "value": 1,
+   "icon": "🏖️",
+   "fx": [],
+   "rule": {
+    "startAll": [
+     [
+      "heal",
+      2
+     ]
+    ]
+   },
+   "owner": [],
+   "effect": {
+    "zh": "大家：每位玩家回合開始時回復 2 點理智。打出新場地會取代舊的。",
+    "en": "Everyone: at the start of every player's turn, restore 2 SP. A new location replaces the old one."
+   }
+  },
+  {
+   "id": "L010",
+   "name": {
+    "zh": "大塞車",
+    "en": "Traffic Jam"
+   },
+   "type": "location",
+   "cost": 2,
+   "value": 1,
+   "icon": "🚦",
+   "fx": [],
+   "rule": {
+    "startAll": [
+     [
+      "self",
+      1
+     ]
+    ]
+   },
+   "owner": [
+    [
+     "shield",
+     1
+    ]
+   ],
+   "effect": {
+    "zh": "大家：每位玩家回合開始時失去 1 點理智；打出的人每回合開始時獲得 1 點護盾（先擋傷害）。打出新場地會取代舊的。",
+    "en": "Everyone: at the start of every player's turn, they lose 1 SP; whoever played it, at the start of their turns: gain 1 shield (blocks damage first). A new location replaces the old one."
+   }
+  },
+  {
+   "id": "L011",
+   "name": {
+    "zh": "牙醫診所",
+    "en": "Dentist"
+   },
+   "type": "location",
+   "cost": 3,
+   "value": 2,
+   "icon": "🦷",
+   "fx": [],
+   "rule": {
+    "startAll": [
+     [
+      "self",
+      2
+     ]
+    ]
+   },
+   "owner": [
+    [
+     "heal",
+     2
+    ]
+   ],
+   "effect": {
+    "zh": "大家：每位玩家回合開始時失去 2 點理智；打出的人每回合開始時回復 2 點理智。打出新場地會取代舊的。",
+    "en": "Everyone: at the start of every player's turn, they lose 2 SP; whoever played it, at the start of their turns: restore 2 SP. A new location replaces the old one."
+   }
+  },
+  {
+   "id": "L012",
+   "name": {
+    "zh": "百貨公司",
+    "en": "Department Store"
+   },
+   "type": "location",
+   "cost": 3,
+   "value": 1,
+   "icon": "🏬",
+   "fx": [],
+   "rule": {
+    "costItem": -1,
+    "drawExtra": 1
+   },
+   "owner": [],
+   "effect": {
+    "zh": "大家：道具卡費用 -1，抽牌階段多抽 1 張。打出新場地會取代舊的。",
+    "en": "Everyone: item cards cost -1, draw 1 more in the draw phase. A new location replaces the old one."
+   }
+  },
+  {
+   "id": "L013",
+   "name": {
+    "zh": "速食店",
+    "en": "Burger Joint"
+   },
+   "type": "location",
+   "cost": 1,
+   "value": 1,
+   "icon": "🍔",
+   "fx": [],
+   "rule": {
+    "healMod": 1
+   },
+   "owner": [
+    [
+     "energy",
+     1
+    ]
+   ],
+   "effect": {
+    "zh": "大家：所有回復 +1；打出的人每回合開始時獲得 1 點能量。打出新場地會取代舊的。",
+    "en": "Everyone: all healing +1; whoever played it, at the start of their turns: gain 1 energy. A new location replaces the old one."
+   }
+  },
+  {
+   "id": "L014",
+   "name": {
+    "zh": "露營區",
+    "en": "Campsite"
+   },
+   "type": "location",
+   "cost": 2,
+   "value": 1,
+   "icon": "⛺",
+   "fx": [],
+   "rule": {
+    "costChar": -1,
+    "startAll": [
+     [
+      "heal",
+      1
+     ]
+    ]
+   },
+   "owner": [],
+   "effect": {
+    "zh": "大家：角色卡費用 -1，每位玩家回合開始時回復 1 點理智。打出新場地會取代舊的。",
+    "en": "Everyone: character cards cost -1, at the start of every player's turn, restore 1 SP. A new location replaces the old one."
+   }
+  },
+  {
+   "id": "L015",
+   "name": {
+    "zh": "游泳池",
+    "en": "Swimming Pool"
+   },
+   "type": "location",
+   "cost": 2,
+   "value": 1,
+   "icon": "🏊",
+   "fx": [],
+   "rule": {
+    "dmgMod": -1,
+    "startAll": [
+     [
+      "heal",
+      1
+     ]
+    ]
+   },
+   "owner": [],
+   "effect": {
+    "zh": "大家：所有傷害 -1，每位玩家回合開始時回復 1 點理智。打出新場地會取代舊的。",
+    "en": "Everyone: all damage -1, at the start of every player's turn, restore 1 SP. A new location replaces the old one."
+   }
+  },
+  {
+   "id": "L016",
+   "name": {
+    "zh": "電影院",
+    "en": "Cinema"
+   },
+   "type": "location",
+   "cost": 2,
+   "value": 2,
+   "icon": "🎬",
+   "fx": [],
+   "rule": {
+    "costAction": 1,
+    "healMod": 2
+   },
+   "owner": [],
+   "effect": {
+    "zh": "大家：行動卡費用 +1，所有回復 +2。打出新場地會取代舊的。",
+    "en": "Everyone: action cards cost +1, all healing +2. A new location replaces the old one."
+   }
+  },
+  {
+   "id": "L017",
+   "name": {
+    "zh": "奶奶家",
+    "en": "Grandma's House"
+   },
+   "type": "location",
+   "cost": 3,
+   "value": 2,
+   "icon": "🏡",
+   "fx": [],
+   "rule": {
+    "healMod": 2
+   },
+   "owner": [
+    [
+     "heal",
+     2
+    ]
+   ],
+   "effect": {
+    "zh": "大家：所有回復 +2；打出的人每回合開始時回復 2 點理智。打出新場地會取代舊的。",
+    "en": "Everyone: all healing +2; whoever played it, at the start of their turns: restore 2 SP. A new location replaces the old one."
+   }
+  },
+  {
+   "id": "L018",
+   "name": {
+    "zh": "車庫",
+    "en": "Garage"
+   },
+   "type": "location",
+   "cost": 2,
+   "value": 1,
+   "icon": "🔧",
+   "fx": [],
+   "rule": {
+    "costItem": -1
+   },
+   "owner": [
+    [
+     "shield",
+     1
+    ]
+   ],
+   "effect": {
+    "zh": "大家：道具卡費用 -1；打出的人每回合開始時獲得 1 點護盾（先擋傷害）。打出新場地會取代舊的。",
+    "en": "Everyone: item cards cost -1; whoever played it, at the start of their turns: gain 1 shield (blocks damage first). A new location replaces the old one."
+   }
+  },
+  {
+   "id": "L019",
+   "name": {
+    "zh": "閣樓",
+    "en": "Attic"
+   },
+   "type": "location",
+   "cost": 2,
+   "value": 1,
+   "icon": "🕸️",
+   "fx": [],
+   "rule": {
+    "dmgMod": 1
+   },
+   "owner": [],
+   "effect": {
+    "zh": "大家：所有傷害 +1。打出新場地會取代舊的。",
+    "en": "Everyone: all damage +1. A new location replaces the old one."
+   }
+  },
+  {
+   "id": "L020",
+   "name": {
+    "zh": "後院",
+    "en": "Backyard"
+   },
+   "type": "location",
+   "cost": 1,
+   "value": 1,
+   "icon": "🌻",
+   "fx": [],
+   "rule": {
+    "startAll": []
+   },
+   "owner": [
+    [
+     "heal",
+     1
+    ],
+    [
+     "draw",
+     1
+    ]
+   ],
+   "effect": {
+    "zh": "打出的人每回合開始時回復 1 點理智，抽 1 張牌。打出新場地會取代舊的。",
+    "en": "whoever played it, at the start of their turns: restore 1 SP, draw 1 card. A new location replaces the old one."
+   }
+  },
+  {
+   "id": "L021",
+   "name": {
+    "zh": "浴室",
+    "en": "Bathroom"
+   },
+   "type": "location",
+   "cost": 1,
+   "value": 1,
+   "icon": "🚿",
+   "fx": [],
+   "rule": {
+    "costAction": -1,
+    "dmgMod": -1
+   },
+   "owner": [],
+   "effect": {
+    "zh": "大家：行動卡費用 -1，所有傷害 -1。打出新場地會取代舊的。",
+    "en": "Everyone: action cards cost -1, all damage -1. A new location replaces the old one."
+   }
+  },
+  {
+   "id": "L022",
+   "name": {
+    "zh": "洗衣間",
+    "en": "Laundry Room"
+   },
+   "type": "location",
+   "cost": 2,
+   "value": 2,
+   "icon": "🧺",
+   "fx": [],
+   "rule": {},
+   "owner": [
+    [
+     "shield",
+     2
+    ]
+   ],
+   "effect": {
+    "zh": "打出的人每回合開始時獲得 2 點護盾（先擋傷害）。打出新場地會取代舊的。",
+    "en": "whoever played it, at the start of their turns: gain 2 shield (blocks damage first). A new location replaces the old one."
+   }
+  },
+  {
+   "id": "L023",
+   "name": {
+    "zh": "停電的家",
+    "en": "Blackout"
+   },
+   "type": "location",
+   "cost": 3,
+   "value": 1,
+   "icon": "🕯️",
+   "fx": [],
+   "rule": {
+    "costAction": 1,
+    "costItem": 1,
+    "costChar": 1
+   },
+   "owner": [
+    [
+     "energy",
+     1
+    ]
+   ],
+   "effect": {
+    "zh": "大家：行動卡費用 +1，道具卡費用 +1，角色卡費用 +1；打出的人每回合開始時獲得 1 點能量。打出新場地會取代舊的。",
+    "en": "Everyone: action cards cost +1, item cards cost +1, character cards cost +1; whoever played it, at the start of their turns: gain 1 energy. A new location replaces the old one."
+   }
+  },
+  {
+   "id": "L024",
+   "name": {
+    "zh": "下雨天",
+    "en": "Rainy Day"
+   },
+   "type": "location",
+   "cost": 2,
+   "value": 1,
+   "icon": "🌧️",
+   "fx": [],
+   "rule": {
+    "drawExtra": 1,
+    "dmgMod": -1
+   },
+   "owner": [],
+   "effect": {
+    "zh": "大家：所有傷害 -1，抽牌階段多抽 1 張。打出新場地會取代舊的。",
+    "en": "Everyone: all damage -1, draw 1 more in the draw phase. A new location replaces the old one."
+   }
+  },
+  {
+   "id": "L025",
+   "name": {
+    "zh": "生日會場",
+    "en": "Party Hall"
+   },
+   "type": "location",
+   "cost": 3,
+   "value": 1,
+   "icon": "🎈",
+   "fx": [],
+   "rule": {
+    "dmgMod": 1,
+    "healMod": 1
+   },
+   "owner": [
+    [
+     "draw",
+     1
+    ]
+   ],
+   "effect": {
+    "zh": "大家：所有傷害 +1，所有回復 +1；打出的人每回合開始時抽 1 張牌。打出新場地會取代舊的。",
+    "en": "Everyone: all damage +1, all healing +1; whoever played it, at the start of their turns: draw 1 card. A new location replaces the old one."
+   }
+  },
+  {
+   "id": "L026",
+   "name": {
+    "zh": "博物館",
+    "en": "Museum"
+   },
+   "type": "location",
+   "cost": 2,
+   "value": 1,
+   "icon": "🏛️",
+   "fx": [],
+   "rule": {
+    "costAction": 1
+   },
+   "owner": [
+    [
+     "shield",
+     2
+    ]
+   ],
+   "effect": {
+    "zh": "大家：行動卡費用 +1；打出的人每回合開始時獲得 2 點護盾（先擋傷害）。打出新場地會取代舊的。",
+    "en": "Everyone: action cards cost +1; whoever played it, at the start of their turns: gain 2 shield (blocks damage first). A new location replaces the old one."
+   }
+  },
+  {
+   "id": "L027",
+   "name": {
+    "zh": "足球場",
+    "en": "Soccer Field"
+   },
+   "type": "location",
+   "cost": 3,
+   "value": 1,
+   "icon": "⚽",
+   "fx": [],
+   "rule": {
+    "dmgMod": 1
+   },
+   "owner": [
+    [
+     "energy",
+     1
+    ]
+   ],
+   "effect": {
+    "zh": "大家：所有傷害 +1；打出的人每回合開始時獲得 1 點能量。打出新場地會取代舊的。",
+    "en": "Everyone: all damage +1; whoever played it, at the start of their turns: gain 1 energy. A new location replaces the old one."
+   }
+  },
+  {
+   "id": "L028",
+   "name": {
+    "zh": "夜市",
+    "en": "Night Market"
+   },
+   "type": "location",
+   "cost": 2,
+   "value": 1,
+   "icon": "🏮",
+   "fx": [],
+   "rule": {
+    "costItem": -1,
+    "healMod": 1
+   },
+   "owner": [],
+   "effect": {
+    "zh": "大家：道具卡費用 -1，所有回復 +1。打出新場地會取代舊的。",
+    "en": "Everyone: item cards cost -1, all healing +1. A new location replaces the old one."
+   }
+  },
+  {
+   "id": "L029",
+   "name": {
+    "zh": "機場",
+    "en": "Airport"
+   },
+   "type": "location",
+   "cost": 3,
+   "value": 1,
+   "icon": "✈️",
+   "fx": [],
+   "rule": {
+    "startAll": [
+     [
+      "self",
+      1
+     ],
+     [
+      "draw",
+      1
+     ]
+    ]
+   },
+   "owner": [],
+   "effect": {
+    "zh": "大家：每位玩家回合開始時失去 1 點理智，抽 1 張牌。打出新場地會取代舊的。",
+    "en": "Everyone: at the start of every player's turn, they lose 1 SP, draw 1 card. A new location replaces the old one."
+   }
+  },
+  {
+   "id": "L030",
+   "name": {
+    "zh": "醫院",
+    "en": "Hospital"
+   },
+   "type": "location",
+   "cost": 3,
+   "value": 3,
+   "icon": "🏥",
+   "fx": [],
+   "rule": {
+    "healMod": 3
+   },
+   "owner": [],
+   "effect": {
+    "zh": "大家：所有回復 +3。打出新場地會取代舊的。",
+    "en": "Everyone: all healing +3. A new location replaces the old one."
+   }
+  },
+  {
+   "id": "L031",
+   "name": {
+    "zh": "書房",
+    "en": "Study"
+   },
+   "type": "location",
+   "cost": 2,
+   "value": 1,
+   "icon": "🖥️",
+   "fx": [],
+   "rule": {},
+   "owner": [
+    [
+     "draw",
+     1
+    ]
+   ],
+   "effect": {
+    "zh": "打出的人每回合開始時抽 1 張牌。打出新場地會取代舊的。",
+    "en": "whoever played it, at the start of their turns: draw 1 card. A new location replaces the old one."
+   }
+  },
+  {
+   "id": "L032",
+   "name": {
+    "zh": "遊戲室",
+    "en": "Playroom"
+   },
+   "type": "location",
+   "cost": 2,
+   "value": 1,
+   "icon": "🧸",
+   "fx": [],
+   "rule": {
+    "costChar": -1,
+    "costItem": -1
+   },
+   "owner": [],
+   "effect": {
+    "zh": "大家：道具卡費用 -1，角色卡費用 -1。打出新場地會取代舊的。",
+    "en": "Everyone: item cards cost -1, character cards cost -1. A new location replaces the old one."
+   }
+  },
+  {
+   "id": "L033",
+   "name": {
+    "zh": "亂七八糟的廚房",
+    "en": "Messy Kitchen"
+   },
+   "type": "location",
+   "cost": 2,
+   "value": 1,
+   "icon": "🍝",
+   "fx": [],
+   "rule": {
+    "dmgMod": 1
+   },
+   "owner": [
+    [
+     "mill",
+     1
+    ]
+   ],
+   "effect": {
+    "zh": "大家：所有傷害 +1；打出的人每回合開始時對手牌庫最上面 1 張被丟掉。打出新場地會取代舊的。",
+    "en": "Everyone: all damage +1; whoever played it, at the start of their turns: the top 1 card of the opponent's deck are thrown away. A new location replaces the old one."
+   }
+  },
+  {
+   "id": "L034",
+   "name": {
+    "zh": "下雪的院子",
+    "en": "Snowy Yard"
+   },
+   "type": "location",
+   "cost": 2,
+   "value": 1,
+   "icon": "⛄",
+   "fx": [],
+   "rule": {
+    "costAction": -1
+   },
+   "owner": [
+    [
+     "self",
+     1
+    ],
+    [
+     "energy",
+     2
+    ]
+   ],
+   "effect": {
+    "zh": "大家：行動卡費用 -1；打出的人每回合開始時你自己失去 1 點理智，獲得 2 點能量。打出新場地會取代舊的。",
+    "en": "Everyone: action cards cost -1; whoever played it, at the start of their turns: you lose 1 SP, gain 2 energy. A new location replaces the old one."
+   }
+  },
+  {
+   "id": "L035",
+   "name": {
+    "zh": "溫泉",
+    "en": "Hot Spring"
+   },
+   "type": "location",
+   "cost": 4,
+   "value": 1,
+   "icon": "♨️",
+   "fx": [],
+   "rule": {
+    "startAll": [
+     [
+      "heal",
+      2
+     ]
+    ],
+    "healMod": 1
+   },
+   "owner": [],
+   "effect": {
+    "zh": "大家：所有回復 +1，每位玩家回合開始時回復 2 點理智。打出新場地會取代舊的。",
+    "en": "Everyone: all healing +1, at the start of every player's turn, restore 2 SP. A new location replaces the old one."
+   }
+  },
+  {
+   "id": "L036",
+   "name": {
+    "zh": "家庭遊戲夜",
+    "en": "Family Game Night"
+   },
+   "type": "location",
+   "cost": 3,
+   "value": 1,
+   "icon": "🎲",
+   "fx": [],
+   "rule": {
+    "drawExtra": 1,
+    "costAction": -1
+   },
+   "owner": [],
+   "effect": {
+    "zh": "大家：行動卡費用 -1，抽牌階段多抽 1 張。打出新場地會取代舊的。",
+    "en": "Everyone: action cards cost -1, draw 1 more in the draw phase. A new location replaces the old one."
+   }
+  },
+  {
+   "id": "L037",
+   "name": {
+    "zh": "安靜的自修室",
+    "en": "Quiet Room"
+   },
+   "type": "location",
+   "cost": 2,
+   "value": 2,
+   "icon": "🤫",
+   "fx": [],
+   "rule": {
+    "dmgMod": -2
+   },
+   "owner": [],
+   "effect": {
+    "zh": "大家：所有傷害 -2。打出新場地會取代舊的。",
+    "en": "Everyone: all damage -2. A new location replaces the old one."
+   }
+  },
+  {
+   "id": "L038",
+   "name": {
+    "zh": "週年慶",
+    "en": "Big Sale"
+   },
+   "type": "location",
+   "cost": 2,
+   "value": 2,
+   "icon": "🛍️",
+   "fx": [],
+   "rule": {
+    "costItem": -2
+   },
+   "owner": [],
+   "effect": {
+    "zh": "大家：道具卡費用 -2。打出新場地會取代舊的。",
+    "en": "Everyone: item cards cost -2. A new location replaces the old one."
+   }
+  },
+  {
+   "id": "L039",
+   "name": {
+    "zh": "叢林健行",
+    "en": "Jungle Hike"
+   },
+   "type": "location",
+   "cost": 3,
+   "value": 3,
+   "icon": "🌴",
+   "fx": [],
+   "rule": {
+    "startAll": [
+     [
+      "self",
+      1
+     ]
+    ]
+   },
+   "owner": [
+    [
+     "heal",
+     3
+    ]
+   ],
+   "effect": {
+    "zh": "大家：每位玩家回合開始時失去 1 點理智；打出的人每回合開始時回復 3 點理智。打出新場地會取代舊的。",
+    "en": "Everyone: at the start of every player's turn, they lose 1 SP; whoever played it, at the start of their turns: restore 3 SP. A new location replaces the old one."
+   }
+  },
+  {
+   "id": "L040",
+   "name": {
+    "zh": "外婆的花園",
+    "en": "Granny's Garden"
+   },
+   "type": "location",
+   "cost": 3,
+   "value": 1,
+   "icon": "🌷",
+   "fx": [],
+   "rule": {
+    "healMod": 1,
+    "startAll": [
+     [
+      "heal",
+      1
+     ]
+    ]
+   },
+   "owner": [
+    [
+     "shield",
+     1
+    ]
+   ],
+   "effect": {
+    "zh": "大家：所有回復 +1，每位玩家回合開始時回復 1 點理智；打出的人每回合開始時獲得 1 點護盾（先擋傷害）。打出新場地會取代舊的。",
+    "en": "Everyone: all healing +1, at the start of every player's turn, restore 1 SP; whoever played it, at the start of their turns: gain 1 shield (blocks damage first). A new location replaces the old one."
+   }
+  }
+ ]
+}
